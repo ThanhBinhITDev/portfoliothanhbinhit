@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { BrandLogo } from "./brand-logo";
 import { ThemeToggle } from "./theme-toggle";
 
 export function Navbar() {
@@ -10,11 +9,8 @@ export function Navbar() {
       <nav className="max-w-7xl mx-auto flex items-center justify-between glass-panel px-6 py-3 rounded-2xl" data-purpose="main-nav">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Link href="/" className="hover:opacity-80 transition-opacity flex items-center gap-2">
-            <BrandLogo className="h-6 w-auto text-slate-900 dark:text-white" />
-            <span className="font-display text-2xl font-extrabold tracking-tight">
-              thanhbinh<span className="text-brand-teal">it</span>
-            </span>
+          <Link href="/" className="font-display text-2xl font-extrabold tracking-tight hover:opacity-80 transition-opacity">
+            thanhbinh<span className="text-brand-teal">it</span>
           </Link>
         </div>
         {/* Nav Links */}
@@ -26,8 +22,8 @@ export function Navbar() {
         {/* CTA Button & Toggle */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <Link
-            href="mailto:contact@thanhbinhit.com"
+          <Link 
+            href="mailto:contact@thanhbinhit.com" 
             className="bg-slate-950 dark:bg-white dark:text-black text-white px-6 py-2 rounded-full font-medium text-sm hover:opacity-90 transition-all shadow-md shadow-slate-950/10 block"
           >
             Liên hệ
