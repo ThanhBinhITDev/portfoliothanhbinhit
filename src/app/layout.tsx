@@ -13,6 +13,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Thanh Bình IT - Phát triển & Quản trị Website",
   description: "Xây dựng nền tảng số chuẩn Apple Design System. Giao diện tĩnh lặng, tốc độ mượt mà.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

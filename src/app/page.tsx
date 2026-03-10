@@ -6,6 +6,7 @@ import { LiquidBackground } from "@/components/ui/liquid-background";
 import { BentoCard } from "@/components/ui/bento-card";
 import { ArrowRight, ArrowUpRight, CheckCircle2, Check, Clock, Code2, Layers, Lightbulb, MonitorSmartphone, Settings, Zap } from "lucide-react";
 import { HelloLoader } from "@/components/hello-loader";
+import { BrandLogo } from "@/components/brand-logo";
 import { cn } from "@/lib/utils";
 
 const containerVariants: Variants = {
@@ -32,19 +33,19 @@ const WorkflowStepItem = ({ step, index, progress, total }: any) => {
       isActive ? "opacity-100 translate-y-0" : "opacity-40 translate-y-8 grayscale"
     )}>
       {/* Circle (Centered over the absolute horizontal line) */}
+      {/* Added z-20 and solid background to ensure line passes BEHIND the circle */}
       <div className={cn(
         "flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center font-bold text-lg md:text-xl border-[4px] transition-all duration-700 relative z-20",
         isActive
           ? "bg-blue-600 text-white border-blue-600 shadow-xl shadow-blue-500/40 scale-110"
-          : "bg-slate-50 dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-400"
+          : "bg-white dark:bg-zinc-950 border-slate-200 dark:border-zinc-800 text-slate-400"
       )}>
         {step.num}
       </div>
 
       {/* Vertical connector from circle to card */}
       <div className={cn(
-        "w-[2px] h-8 md:h-12 transition-colors duration-700",
-        isActive ? "bg-blue-600" : "bg-slate-200 dark:bg-zinc-800"
+        "w-[2px] h-8 md:h-12 transition-colors duration-700 bg-transparent" // Invisible line since the circle touches the track
       )} />
 
       {/* Content Card */}
@@ -144,7 +145,7 @@ const StickyWorkflow = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter mb-4 text-slate-900 dark:text-white"
           >
-            Hành trình <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">Kiến tạo</span>
+            Quy trình <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">Làm việc</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -166,18 +167,16 @@ const StickyWorkflow = () => {
           >
             <div className="relative flex gap-8 md:gap-16 px-[10vw] md:px-[15vw]">
 
-              {/* Static Background Line */}
-              {/* top-6 = 24px (half of h-12), md:top-8 = 32px (half of h-16) */}
-              <div className="absolute top-6 md:top-8 -translate-y-1/2 left-[10vw] relative-line-bg right-[10vw] h-[3px] bg-slate-200 dark:bg-zinc-800 rounded-full z-0" style={{ width: "calc(100% - 20vw - 3vw)" /* approximation to stop early */ }} />
-              <div className="absolute top-6 md:top-8 -translate-y-1/2 left-0 right-0 h-[3px] bg-slate-200 dark:bg-zinc-800 rounded-full z-0" />
+              {/* Static Background Line (Z-index 0) */}
+              <div className="absolute top-6 md:top-8 -translate-y-1/2 left-0 right-0 h-[3px] bg-slate-200 dark:bg-zinc-800/80 rounded-full z-0" />
 
-              {/* Dynamic Fill Line */}
+              {/* Dynamic Fill Line (Z-index 10) */}
               <motion.div
-                className="absolute top-6 md:top-8 -translate-y-1/2 left-0 h-[4px] bg-gradient-to-r from-blue-400 to-blue-600 rounded-full origin-left z-10 shadow-[0_0_15px_rgba(37,99,235,0.5)]"
+                className="absolute top-6 md:top-8 -translate-y-1/2 left-0 h-[4px] bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full origin-left z-10 shadow-[0_0_15px_rgba(59,130,246,0.6)]"
                 style={{ scaleX: scrollYProgress, width: "100%" }}
               />
 
-              {/* Step Items */}
+              {/* Step Items (Circle indicator must be Z-index 20+) */}
               {steps.map((step, i) => (
                 <WorkflowStepItem key={i} step={step} index={i} progress={scrollYProgress} total={steps.length} />
               ))}
@@ -212,37 +211,101 @@ export default function Home() {
     <>
       <HelloLoader />
       <LiquidBackground />
-      <div className="flex flex-col items-center w-full pb-24 space-y-32">
+      <div className="flex flex-col items-center w-full pb-24 space-y-16 md:space-y-32">
         {/* Hero Section Redesigned */}
-        <section className="relative z-10 pt-32 pb-20 px-6 min-h-screen flex items-center justify-center w-full">
+        <section className="relative z-10 pt-20 md:pt-24 pb-10 md:pb-16 px-4 sm:px-6 min-h-screen flex items-start md:items-center justify-center w-full">
           <div className="max-w-6xl w-full">
-            <div className="glass-panel p-12 md:p-32 rounded-[4rem] text-center relative overflow-hidden" data-purpose="hero-container">
+            <div className="glass-panel p-6 sm:p-8 md:p-10 lg:p-12 xl:p-24 rounded-[2.5rem] md:rounded-[4rem] text-center relative" data-purpose="hero-container">
               {/* Subtle Glow behind text */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/5 blur-[120px] pointer-events-none"></div>
+
+              {/* ─── Floating Ambient SVG Decorations ─── */}
+              {/* Top Left – spinning blue circle outline */}
+              <motion.div
+                className="absolute top-6 left-6 w-10 h-10 pointer-events-none opacity-30 dark:opacity-20"
+                animate={{ y: [0, -14, 0], rotate: [0, 180, 360] }}
+                transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+              >
+                <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#3b82f6" strokeWidth="2" strokeDasharray="6 4" /></svg>
+              </motion.div>
+
+              {/* Top Right – floating triangle */}
+              <motion.div
+                className="absolute top-8 right-8 w-8 h-8 pointer-events-none opacity-25 dark:opacity-15"
+                animate={{ y: [0, 12, 0], x: [0, 6, 0], rotate: [0, -20, 0] }}
+                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
+              >
+                <svg viewBox="0 0 32 32" fill="none"><polygon points="16,2 30,28 2,28" stroke="#8b5cf6" strokeWidth="2" strokeLinejoin="round" /></svg>
+              </motion.div>
+
+              {/* Centre Left – floating plus/cross */}
+              <motion.div
+                className="absolute left-6 top-1/2 w-8 h-8 pointer-events-none opacity-20 dark:opacity-15 -translate-y-1/2 hidden md:block"
+                animate={{ y: [0, -10, 0], rotate: [0, 90, 180] }}
+                transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 2 }}
+              >
+                <svg viewBox="0 0 32 32" fill="none"><line x1="16" y1="2" x2="16" y2="30" stroke="#06b6d4" strokeWidth="2.5" strokeLinecap="round" /><line x1="2" y1="16" x2="30" y2="16" stroke="#06b6d4" strokeWidth="2.5" strokeLinecap="round" /></svg>
+              </motion.div>
+
+              {/* Centre Right – floating diamond */}
+              <motion.div
+                className="absolute right-6 top-1/2 w-8 h-8 pointer-events-none opacity-20 dark:opacity-15 -translate-y-1/2 hidden md:block"
+                animate={{ y: [0, 14, 0], rotate: [0, 45, 0] }}
+                transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 0.5 }}
+              >
+                <svg viewBox="0 0 32 32" fill="none"><rect x="8" y="8" width="16" height="16" stroke="#f59e0b" strokeWidth="2" transform="rotate(45 16 16)" /></svg>
+              </motion.div>
+
+              {/* Bottom Left – floating small filled circle */}
+              <motion.div
+                className="absolute bottom-8 left-10 w-5 h-5 pointer-events-none opacity-30 dark:opacity-20 hidden sm:block"
+                animate={{ y: [0, -18, 0], x: [0, 8, 0] }}
+                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1.5 }}
+              >
+                <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#34d399" fillOpacity="0.7" /></svg>
+              </motion.div>
+
+              {/* Bottom Right – floating star */}
+              <motion.div
+                className="absolute bottom-10 right-10 w-7 h-7 pointer-events-none opacity-25 dark:opacity-15 hidden sm:block"
+                animate={{ y: [0, -12, 0], rotate: [0, 60, 0] }}
+                transition={{ repeat: Infinity, duration: 9, ease: "easeInOut", delay: 3 }}
+              >
+                <svg viewBox="0 0 28 28" fill="none"><polygon points="14,2 17,10 26,10 19,15 22,24 14,19 6,24 9,15 2,10 11,10" fill="#f472b6" fillOpacity="0.6" /></svg>
+              </motion.div>
 
               {/* Tech Badge */}
               <motion.div
                 variants={itemVariants}
                 initial="hidden"
                 animate="visible"
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 mb-10"
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 mb-4 md:mb-6"
               >
                 <span className="w-2 h-2 rounded-full bg-brand-teal animate-pulse"></span>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Kỹ sư Phần mềm & Kiến trúc sư Web</span>
               </motion.div>
 
               {/* Logo/Title Branding */}
-              <motion.h2
+              <motion.div
                 variants={itemVariants}
-                className="font-display text-3xl md:text-4xl mb-6 font-bold tracking-tight text-gradient-hero opacity-90"
+                className="flex flex-col items-center justify-center mb-4 md:mb-6 gap-2 md:gap-4"
               >
-                thanhbinhit
-              </motion.h2>
+                {/* Logo floats gently up and down */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+                >
+                  <BrandLogo className="w-12 md:w-16 lg:w-20 h-auto text-slate-900 dark:text-white" />
+                </motion.div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-gradient-hero opacity-90">
+                  thanhbinhit
+                </h2>
+              </motion.div>
 
               {/* Main Headline */}
               <motion.h1
                 variants={itemVariants}
-                className="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-[1.05] text-gradient-display mb-10"
+                className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.2] pb-3 md:pb-4 text-gradient-display mb-4 md:mb-6"
               >
                 Xin chào bạn!
               </motion.h1>
@@ -250,7 +313,7 @@ export default function Home() {
               {/* Sub-headline */}
               <motion.p
                 variants={itemVariants}
-                className="max-w-2xl mx-auto text-lg md:text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-16"
+                className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg xl:text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-6 md:mb-8 px-2"
               >
                 Xây dựng web cùng <strong className="text-slate-900 dark:text-white font-semibold">thanhbinhit</strong> — khẳng định <span className="text-slate-800 dark:text-slate-200">thương hiệu</span>, phát triển <span className="text-slate-800 dark:text-slate-200">doanh nghiệp</span> của bạn.
               </motion.p>
@@ -279,7 +342,7 @@ export default function Home() {
               {/* Trusted Tech Stacks */}
               <motion.div
                 variants={itemVariants}
-                className="mt-24 pt-12 border-t border-slate-200/50 dark:border-white/10"
+                className="hidden xl:block mt-10 xl:mt-16 pt-8 xl:pt-12 border-t border-slate-200/50 dark:border-white/10"
               >
                 <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500 dark:text-slate-400 mb-6">Chuyên môn trong các công nghệ hiện đại</p>
                 <div className="flex flex-wrap justify-center gap-12 opacity-40 hover:opacity-100 transition-all duration-500">
@@ -296,17 +359,39 @@ export default function Home() {
 
         {/* Projects: Bento Grid */}
         <section id="projects" className="w-full max-w-6xl px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12 text-center md:text-left"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 font-display text-gradient-display">Dự án chọn lọc.</h2>
-            <p className="text-slate-500 text-lg md:text-xl">Dự án tiêu biểu ứng dụng sự hài hòa của Hệ thống Thiết kế Apple.</p>
-          </motion.div>
+          <div className="mb-12 relative">
+            {/* Floating SVG deco – left wavy line */}
+            <motion.div
+              className="absolute -left-8 top-0 w-6 h-20 opacity-20 dark:opacity-10 pointer-events-none hidden lg:block"
+              animate={{ y: [0, -12, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            >
+              <svg viewBox="0 0 24 80" fill="none"><path d="M12 5 C4 20 20 35 12 50 C4 65 20 75 12 80" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" /></svg>
+            </motion.div>
+            {/* Floating SVG deco – right 3×3 dots grid */}
+            <motion.div
+              className="absolute -right-8 top-2 w-10 h-10 opacity-20 dark:opacity-10 pointer-events-none hidden lg:block"
+              animate={{ y: [0, 10, 0], rotate: [0, 15, 0] }}
+              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
+            >
+              <svg viewBox="0 0 40 40" fill="none">
+                {[0, 13, 26].map(cx => [0, 13, 26].map(cy => <circle key={`${cx}-${cy}`} cx={cx + 7} cy={cy + 7} r="3" fill="#8b5cf6" />))}
+              </svg>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center md:text-left"
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-4 font-display text-gradient-display leading-[1.2] pb-4">Dự án chọn lọc.</h2>
+              <p className="text-slate-500 text-base md:text-xl">Dự án tiêu biểu ứng dụng sự hài hòa của Hệ thống Thiết kế Apple.</p>
+            </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[340px] gap-4 md:gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[340px] gap-3 md:gap-6">
+            {/* Large Feature Card - E-Commerce Platform */}
             <BentoCard
               colSpan={2}
               rowSpan={2}
@@ -315,73 +400,136 @@ export default function Home() {
             >
               <div className="flex flex-col h-full justify-between p-2">
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 font-display">Nền tảng Thương mại điện tử</h3>
-                  <p className="text-slate-500 dark:text-slate-400 max-w-md text-lg leading-relaxed">Kiến trúc Headless CMS, Next.js 14, tốc độ tải trang dưới 1 giây. Hệ thống mượt mà và trực quan.</p>
-                </div>
-                <div className="w-full h-56 bg-white/50 dark:bg-black/40 rounded-3xl border border-black/5 dark:border-white/5 backdrop-blur-xl overflow-hidden mt-6 shadow-xl relative">
-                  <div className="w-full h-10 bg-black/5 dark:bg-white/5 flex items-center px-4 gap-2 border-b border-black/5 dark:border-white/5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-400 opacity-60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-60" />
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-700">
+                      🛒 Thương mại điện tử
+                    </span>
+                    <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
+                      Live
+                    </span>
                   </div>
-                  <div className="p-6 grid gap-4 opacity-40">
-                    <div className="h-6 w-1/3 bg-black/10 dark:bg-white/10 rounded-full" />
-                    <div className="h-20 w-full bg-black/5 dark:bg-white/5 rounded-xl border border-black/5 dark:border-white/5" />
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-3 font-display">Nền tảng Thương mại<br />điện tử Lumina Shop</h3>
+                  <p className="text-slate-500 dark:text-slate-400 max-w-md text-sm md:text-base leading-relaxed mb-4">Hệ thống B2C quy mô lớn với Headless CMS, Next.js 14 và Stripe. Tốc độ tải dưới 800ms, LCP đạt chuẩn Core Web Vitals.</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Next.js 14", "TypeScript", "Stripe", "PostgreSQL", "TailwindCSS"].map(tag => (
+                      <span key={tag} className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/10 text-slate-600 dark:text-slate-300">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+                {/* Mock Browser UI */}
+                <div className="w-full h-40 md:h-52 bg-white dark:bg-zinc-900 rounded-2xl border border-black/5 dark:border-white/5 overflow-hidden mt-4 shadow-xl">
+                  <div className="w-full h-8 bg-slate-100 dark:bg-zinc-800 flex items-center px-3 gap-2 border-b border-slate-200 dark:border-zinc-700 shrink-0">
+                    <div className="w-2 h-2 rounded-full bg-red-400" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                    <div className="w-2 h-2 rounded-full bg-green-400" />
+                    <div className="ml-2 flex-1 h-4 bg-slate-200 dark:bg-zinc-700 rounded-full max-w-48 text-[8px] flex items-center px-2 text-slate-400">lumina-shop.vn</div>
+                  </div>
+                  <div className="p-3 grid gap-2">
+                    <div className="flex gap-2">
+                      <div className="w-24 h-5 bg-gradient-to-r from-emerald-400/40 to-teal-400/40 rounded-full" />
+                      <div className="w-16 h-5 bg-slate-100 dark:bg-zinc-700 rounded-full" />
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[1, 2, 3].map(i => <div key={i} className={`h-16 rounded-xl ${i === 1 ? 'bg-gradient-to-br from-emerald-400/20 to-cyan-400/20 border border-emerald-300/20' : 'bg-slate-100 dark:bg-zinc-700/50'}`} />)}
+                    </div>
+                    <div className="flex gap-2">
+                      <div className="h-4 w-20 bg-slate-100 dark:bg-zinc-700/50 rounded-full" />
+                      <div className="h-4 w-28 bg-slate-100 dark:bg-zinc-700/50 rounded-full" />
+                    </div>
                   </div>
                 </div>
               </div>
             </BentoCard>
 
+            {/* Tall Card - Mobile App (ZenTask) */}
             <BentoCard
               colSpan={1}
               rowSpan={2}
-              className="bg-brand-blue/5 border-brand-blue/10 dark:bg-brand-blue/[0.03] overflow-hidden"
+              className="border-transparent overflow-hidden"
+              style={{ background: "linear-gradient(180deg, #0f172a 0%, #1e1b4b 60%, #1e3a5f 100%)" }}
               whileHover={hoverScale}
             >
-              <div className="flex flex-col h-full p-2">
-                <div className="p-4 bg-white dark:bg-zinc-800 shadow-sm w-fit rounded-2xl mb-6">
-                  <MonitorSmartphone className="w-7 h-7 text-brand-blue" />
+              <div className="flex flex-col h-full p-2 relative">
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-2xl pointer-events-none" />
+                <div className="p-3 bg-blue-500/20 backdrop-blur-md shadow-sm w-fit rounded-2xl mb-5 border border-blue-400/30">
+                  <MonitorSmartphone className="w-6 h-6 text-blue-300" />
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-2 font-display">Ứng dụng đa kênh</h3>
-                <p className="text-slate-500 dark:text-slate-400">Trải nghiệm đồng nhất và hoàn hảo trên mọi nền tảng thiết bị.</p>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-sky-300 mb-2">Ứng dụng di động</span>
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-3 font-display leading-tight text-white">ZenTask – App Quản lý Công việc</h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-5">Ứng dụng React Native tích hợp AI phân loại ưu tiên, đồng bộ real-time trên mọi thiết bị.</p>
+                <div className="flex flex-col gap-2 mt-auto">
+                  {["React Native", "Firebase", "OpenAI API"].map(tag => (
+                    <span key={tag} className="text-[10px] font-semibold w-fit px-2.5 py-1 rounded-lg bg-blue-500/20 border border-blue-400/40 text-sky-200">{tag}</span>
+                  ))}
+                </div>
+                <div className="mt-4 flex items-center gap-2 text-sky-300 text-xs font-semibold">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-400"></span>
+                  </span>
+                  4,200+ người dùng hoạt động
+                </div>
               </div>
             </BentoCard>
 
+            {/* Small Card - Booking System (BookFlow) */}
             <BentoCard
               colSpan={1}
               rowSpan={1}
-              className="bg-slate-900 text-white dark:bg-zinc-100 dark:text-black border-transparent"
+              className="border-transparent overflow-hidden"
+              style={{ background: "linear-gradient(135deg, #0d9488 0%, #059669 100%)" }}
               whileHover={hoverScale}
             >
-              <div className="flex flex-col h-full justify-between p-2">
+              <div className="flex flex-col h-full justify-between p-2 relative">
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none" />
                 <div>
-                  <h3 className="text-2xl font-bold tracking-tight mb-3 font-display">Hệ thống Đặt lịch</h3>
-                  <p className="opacity-70 font-medium">Đặt chỗ & Tư duy Logic</p>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-100 bg-white/20 px-2 py-0.5 rounded-full">📅 SaaS</span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2 font-display text-white">BookFlow – Đặt lịch thông minh</h3>
+                  <p className="text-white/80 text-sm font-medium leading-relaxed">CRM + Booking + Tự động nhắc lịch qua Zalo/SMS.</p>
                 </div>
-                <div className="flex items-center gap-3 opacity-80">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-teal"></span>
-                  </span>
-                  <span className="text-sm font-semibold uppercase tracking-wider">Hệ thống đang chạy</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+                    </span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white">Đang chạy</span>
+                  </div>
+                  <div className="flex gap-1">
+                    {["Next.js", "Zalo API"].map(t => <span key={t} className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-white/20 border border-white/30 text-white">{t}</span>)}
+                  </div>
                 </div>
               </div>
             </BentoCard>
-
+            {/* Wide Card - Dashboard */}
             <BentoCard
-              colSpan={3}
+              colSpan={2}
               rowSpan={1}
-              className="bg-brand-purple/5 border-brand-purple/10 dark:bg-brand-purple/[0.03]"
+              className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/10 dark:to-indigo-900/10 border-purple-200/30 dark:border-purple-800/20"
               whileHover={hoverScale}
             >
-              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between h-full gap-8 p-2">
-                <div className="max-w-xl">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 font-display">Bảng điều khiển Dữ liệu</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">Trực quan hóa dữ liệu thời gian thực. Giao diện tĩnh lặng tập trung vào những con số quan trọng nhất.</p>
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between h-full gap-6 p-2">
+                <div className="max-w-sm">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2 block">📊 Analytics Dashboard</span>
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2 font-display">DataVault – Trực quan hoá Dữ liệu</h3>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Dashboard real-time với biểu đồ tương tác, hỗ trợ xuất báo cáo PDF và tích hợp Google Analytics 4.</p>
                 </div>
-                <div className="flex gap-4 w-full md:w-auto overflow-hidden">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="w-20 md:w-32 h-24 md:h-36 rounded-2xl bg-white/50 dark:bg-black/50 border border-black/5 dark:border-white/5 shadow-sm" />
+                <div className="flex gap-3 w-full md:w-auto shrink-0">
+                  {[
+                    { label: "Orders", value: "2,341", color: "from-purple-400 to-indigo-400" },
+                    { label: "Revenue", value: "₫1.2B", color: "from-emerald-400 to-cyan-400" },
+                    { label: "Users", value: "18.4K", color: "from-pink-400 to-rose-400" }
+                  ].map((stat, i) => (
+                    <div key={i} className="flex-1 md:w-24 h-24 md:h-28 rounded-2xl bg-white dark:bg-zinc-900 border border-black/5 dark:border-white/5 shadow-sm flex flex-col items-center justify-center p-2 text-center">
+                      <div className={`text-lg md:text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br ${stat.color}`}>{stat.value}</div>
+                      <div className="text-[9px] md:text-[10px] font-semibold text-slate-400 mt-1 uppercase tracking-wider">{stat.label}</div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -389,11 +537,77 @@ export default function Home() {
           </div>
         </section>
 
+
         <StickyWorkflow />
 
         {/* Apple-style Bento Grid Features Section */}
-        <section id="features" className="w-full max-w-6xl px-4 lg:px-8 py-24">
-          <div className="flex flex-col items-center text-center mb-16 px-4">
+        <section id="features" className="w-full max-w-6xl px-4 lg:px-8 py-24 relative">
+          {/* ─── Background ambient floating SVGs for Features section ─── */}
+          <motion.div
+            className="absolute -top-8 -left-16 w-32 h-32 opacity-5 dark:opacity-[0.03] pointer-events-none hidden xl:block"
+            animate={{ rotate: [0, 360] }}
+            transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+          >
+            <svg viewBox="0 0 100 100" fill="none">
+              <polygon points="50,5 95,27 95,72 50,95 5,72 5,27" stroke="#6366f1" strokeWidth="2" />
+              <polygon points="50,18 82,34 82,66 50,82 18,66 18,34" stroke="#8b5cf6" strokeWidth="1.5" />
+            </svg>
+          </motion.div>
+          <motion.div
+            className="absolute bottom-0 -right-12 w-40 h-40 opacity-[0.04] dark:opacity-[0.02] pointer-events-none hidden xl:block"
+            animate={{ rotate: [360, 0] }}
+            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+          >
+            <svg viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="45" stroke="#ec4899" strokeWidth="1.5" strokeDasharray="8 4" />
+              <circle cx="50" cy="50" r="30" stroke="#f43f5e" strokeWidth="1" strokeDasharray="4 6" />
+            </svg>
+          </motion.div>
+          {/* Floating zigzag line top-right */}
+          <motion.div
+            className="absolute top-10 right-4 w-16 h-24 opacity-15 dark:opacity-10 pointer-events-none hidden lg:block"
+            animate={{ y: [0, -14, 0], x: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
+          >
+            <svg viewBox="0 0 40 80" fill="none">
+              <polyline points="8,0 32,16 8,32 32,48 8,64 32,80" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </motion.div>
+          {/* Floating arc bottom-left */}
+          <motion.div
+            className="absolute bottom-16 left-0 w-14 h-14 opacity-15 dark:opacity-10 pointer-events-none hidden lg:block"
+            animate={{ y: [0, 12, 0], rotate: [0, -20, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 2 }}
+          >
+            <svg viewBox="0 0 56 56" fill="none">
+              <path d="M8 48 Q28 8 48 48" stroke="#34d399" strokeWidth="3" strokeLinecap="round" fill="none" />
+            </svg>
+          </motion.div>
+          <div className="flex flex-col items-center text-center mb-16 px-4 relative">
+            {/* Floating sparkle top-left of heading */}
+            <motion.div
+              className="absolute -left-6 top-2 w-6 h-6 pointer-events-none opacity-40 dark:opacity-25 hidden md:block"
+              animate={{ y: [0, -10, 0], rotate: [0, 180, 360] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            >
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L13.5 10H22L15.5 15L18 23L12 18L6 23L8.5 15L2 10H10.5Z" fill="#fbbf24" fillOpacity="0.8" />
+              </svg>
+            </motion.div>
+            {/* Floating sparkle top-right of heading */}
+            <motion.div
+              className="absolute -right-6 top-4 w-5 h-5 pointer-events-none opacity-35 dark:opacity-20 hidden md:block"
+              animate={{ y: [0, 10, 0], rotate: [0, -120, 0] }}
+              transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 1 }}
+            >
+              <svg viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="3" fill="#60a5fa" />
+                <line x1="10" y1="2" x2="10" y2="5" stroke="#60a5fa" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="10" y1="15" x2="10" y2="18" stroke="#60a5fa" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="2" y1="10" x2="5" y2="10" stroke="#60a5fa" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="15" y1="10" x2="18" y2="10" stroke="#60a5fa" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -407,7 +621,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gradient-display mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gradient-display mb-6"
             >
               Sức mạnh của Sự tinh tế.
             </motion.h2>
@@ -621,14 +835,49 @@ export default function Home() {
         </section>
 
         {/* Advanced Services Section */}
-        <section id="services" className="w-full max-w-6xl px-4 lg:px-8 py-24">
+        <section id="services" className="w-full max-w-6xl px-4 lg:px-8 py-24 relative">
+          {/* Floating code bracket left */}
+          <motion.div
+            className="absolute top-16 -left-10 w-10 h-16 opacity-10 dark:opacity-[0.07] pointer-events-none hidden lg:block"
+            animate={{ y: [0, -16, 0], x: [0, 4, 0] }}
+            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+          >
+            <svg viewBox="0 0 40 64" fill="none">
+              <path d="M28 4 L12 12 L12 32 L28 40" stroke="#6366f1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M28 40 L12 48 L12 52 L28 60" stroke="#6366f1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </motion.div>
+          {/* Floating gear right */}
+          <motion.div
+            className="absolute top-12 -right-6 w-12 h-12 opacity-[0.07] dark:opacity-[0.05] pointer-events-none hidden lg:block"
+            animate={{ rotate: [0, 360] }}
+            transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
+          >
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="8" stroke="#f59e0b" strokeWidth="2" />
+              {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => (
+                <rect key={i} x="22" y="2" width="4" height="8" rx="2" fill="#f59e0b" fillOpacity="0.8" transform={`rotate(${deg} 24 24)`} />
+              ))}
+            </svg>
+          </motion.div>
+          {/* Floating squiggle bottom */}
+          <motion.div
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 w-32 h-8 opacity-10 dark:opacity-[0.06] pointer-events-none hidden md:block"
+            animate={{ x: [-8, 8, -8], y: [0, -4, 0] }}
+            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+          >
+            <svg viewBox="0 0 128 32" fill="none">
+              <path d="M0 16 Q16 4 32 16 Q48 28 64 16 Q80 4 96 16 Q112 28 128 16" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+            </svg>
+          </motion.div>
           {/* Header */}
           <div className="flex flex-col items-center text-center mb-16">
+
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4"
             >
               <span className="text-slate-900 dark:text-white">Dịch vụ </span>
               <span className="text-gradient-hero">cung cấp</span>
@@ -740,7 +989,7 @@ export default function Home() {
         </section>
 
         {/* CTA (Call To Action) Section - Hybrid Pastel Glass Style */}
-        <section id="cta" className="w-full max-w-6xl mx-auto px-4 lg:px-8 py-32 md:py-48 relative z-10 flex flex-col items-center justify-center">
+        <section id="cta" className="w-full max-w-6xl mx-auto px-4 lg:px-8 py-16 md:py-32 lg:py-48 relative z-10 flex flex-col items-center justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.98, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -827,7 +1076,10 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="w-full max-w-6xl px-4 lg:px-8 py-16 mt-10 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-sm text-slate-500 text-center md:text-left">
-          <p className="font-medium">© {new Date().getFullYear()} Thanh Bình IT. Thiết kế từ sự tĩnh lặng.</p>
+          <div className="flex items-center gap-3 font-medium">
+            <BrandLogo className="w-6 h-6 text-slate-900 dark:text-white" />
+            <p>© {new Date().getFullYear()} Thanh Bình IT. | All rights reserved.</p>
+          </div>
           <div className="flex items-center gap-8 font-medium">
             <a href="#" className="hover:text-foreground transition-colors">Dribbble</a>
             <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
