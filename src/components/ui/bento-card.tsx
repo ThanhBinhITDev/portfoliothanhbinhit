@@ -9,9 +9,10 @@ interface BentoCardProps extends HTMLMotionProps<"div"> {
   className?: string;
   colSpan?: 1 | 2 | 3;
   rowSpan?: 1 | 2 | 3;
+  noGlass?: boolean;
 }
 
-export function BentoCard({ children, className, colSpan = 1, rowSpan = 1, ...props }: BentoCardProps) {
+export function BentoCard({ children, className, colSpan = 1, rowSpan = 1, noGlass = false, ...props }: BentoCardProps) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -38,7 +39,8 @@ export function BentoCard({ children, className, colSpan = 1, rowSpan = 1, ...pr
   return (
     <motion.div
       className={cn(
-        "group relative overflow-hidden rounded-[calc(var(--radius-apple)+4px)] glass-panel",
+        "group relative overflow-hidden rounded-[calc(var(--radius-apple)+4px)]",
+        !noGlass && "glass-panel",
         "transition-transform duration-500",
         spanClasses.col[colSpan],
         spanClasses.row[rowSpan],
@@ -76,7 +78,7 @@ export function BentoCard({ children, className, colSpan = 1, rowSpan = 1, ...pr
           `,
         }}
       />
-      
+
       <div className="relative h-full w-full p-6 sm:p-8 flex flex-col z-10">
         {children}
       </div>
