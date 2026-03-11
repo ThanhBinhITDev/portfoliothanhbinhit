@@ -317,6 +317,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
                   className="px-10 py-4 w-full sm:w-auto rounded-full bg-slate-900 dark:bg-white dark:text-black font-bold text-white transition-all hover:opacity-90 active:scale-95 shadow-lg shadow-slate-900/20 dark:shadow-white/5"
                 >
                   Bắt đầu dự án
@@ -324,6 +325,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(0,0,0,0.05)" }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
                   className="px-10 py-4 w-full sm:w-auto rounded-full bg-white/50 dark:bg-white/10 border border-slate-200 dark:border-white/10 font-bold text-slate-700 dark:text-slate-200 transition-all hover:bg-slate-100 dark:hover:bg-white/20 hover:border-slate-300 active:scale-95"
                 >
                   Xem sản phẩm
@@ -1022,7 +1024,7 @@ export default function Home() {
                 <div className="flex flex-row items-center gap-1.5 text-xs md:text-sm text-[#86868b] font-normal mt-2">
                   <span>Hoặc liên hệ:</span>
                   <a href="mailto:work@ledinhtuan.com" className="text-[#1d1d1f] dark:text-white hover:underline underline-offset-4 transition-colors font-semibold">
-                    work@ledinhtuan.com
+                    thanhbinhit2006@gmail.com
                   </a>
                 </div>
               </div>
@@ -1032,12 +1034,121 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="w-full max-w-6xl px-4 lg:px-8 py-16 mt-10 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-sm text-slate-500 text-center md:text-left">
-          <p className="font-medium">© {new Date().getFullYear()} Thanh Bình IT. Thiết kế từ sự tĩnh lặng.</p>
-          <div className="flex items-center gap-8 font-medium">
-            <a href="#" className="hover:text-foreground transition-colors">Dribbble</a>
-            <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-foreground transition-colors">Liên hệ</a>
+        <footer className="w-full max-w-6xl px-4 lg:px-8 pt-16 pb-8 mt-10 border-t border-black/5 dark:border-white/5">
+          {/* Top grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
+
+            {/* Brand column */}
+            <div className="col-span-2 md:col-span-1 flex flex-col gap-5">
+              <div className="flex items-center gap-3">
+                <Image src="/logo.svg" alt="thanhbinhit logo" width={32} height={32} className="dark:invert" />
+                <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">thanhbinhit</span>
+              </div>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-[220px]">
+                Kỹ sư Phần mềm & Kiến trúc sư Web — Thiết kế những trải nghiệm số tinh tế và đáng nhớ.
+              </p>
+              {/* Social links */}
+              <div className="flex items-center gap-3 mt-1">
+                {[
+                  {
+                    label: "GitHub", href: "https://github.com/thanhbinhit", icon: (
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+                    )
+                  },
+                  {
+                    label: "LinkedIn", href: "https://linkedin.com/in/thanhbinhit", icon: (
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                    )
+                  },
+                  {
+                    label: "Email", href: "mailto:thanhbinhit2006@gmail.com", icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    )
+                  },
+                ].map(({ label, href, icon }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                    className="w-9 h-9 flex items-center justify-center rounded-full border border-black/10 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-all duration-200">
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Nav: Trang */}
+            <div className="flex flex-col gap-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500">Trang</p>
+              <ul className="space-y-3">
+                {[
+                  { label: "Trang chủ", href: "/" },
+                  { label: "Dự án", href: "#projects" },
+                  { label: "Đặc quyền", href: "#features" },
+                  { label: "Dịch vụ", href: "#services" },
+                  { label: "Liên hệ", href: "#cta" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <a href={href} className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">{label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Nav: Dịch vụ */}
+            <div className="flex flex-col gap-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500">Dịch vụ</p>
+              <ul className="space-y-3">
+                {[
+                  "Thiết kế Website",
+                  "Phát triển Ứng dụng",
+                  "Thiết kế UI/UX",
+                  "Hệ thống Quản lý",
+                  "Tối ưu Hiệu suất",
+                  "Tư vấn SEO",
+                ].map((s) => (
+                  <li key={s}>
+                    <a href="#services" className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">{s}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact info */}
+            <div className="flex flex-col gap-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500">Liên hệ</p>
+              <ul className="space-y-3">
+                <li>
+                  <a href="mailto:thanhbinhit2006@gmail.com" className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium break-all">
+                    thanhbinhit2006@gmail.com
+                  </a>
+                </li>
+                <li className="text-sm text-slate-500 dark:text-slate-400 font-medium">Việt Nam 🇻🇳</li>
+                <li className="text-sm text-slate-500 dark:text-slate-400 font-medium">Thứ 2 – Thứ 7, 8:00 – 18:00</li>
+              </ul>
+
+              {/* Tech badges */}
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {["Next.js", "React", "TypeScript", "Three.js"].map((t) => (
+                  <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-slate-400 border border-black/5 dark:border-white/5">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-black/5 dark:border-white/5">
+            <p className="text-xs text-slate-400 dark:text-slate-500 text-center sm:text-left">
+              © {new Date().getFullYear()} <strong className="text-slate-600 dark:text-slate-300">thanhbinhit</strong>. All rights reserved.
+            </p>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="group flex items-center gap-2 text-xs font-semibold text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-white transition-colors"
+            >
+              Lên đầu trang
+              <span className="w-7 h-7 flex items-center justify-center rounded-full border border-black/10 dark:border-white/10 group-hover:bg-slate-100 dark:group-hover:bg-white/10 transition-all">
+                <ArrowRight className="w-3 h-3 -rotate-90" />
+              </span>
+            </button>
           </div>
         </footer>
       </div>
