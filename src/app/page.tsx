@@ -417,7 +417,8 @@ export default function Home() {
             <BentoCard
               colSpan={1}
               rowSpan={1}
-              className="bg-slate-900 text-white dark:bg-zinc-100 dark:text-black border-transparent overflow-hidden"
+              className="text-white border-transparent overflow-hidden"
+              style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
               whileHover={hoverScale}
             >
               <div className="flex flex-col h-full justify-between p-2 relative">
@@ -427,18 +428,20 @@ export default function Home() {
                   <p className="opacity-60 font-medium text-sm">Đặt chỗ & Tư duy Logic</p>
                 </div>
                 {/* Mini calendar */}
-                <div className="grid grid-cols-7 gap-1 my-3">
-                  {["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map(d => (
-                    <div key={d} className="text-center text-[9px] font-bold opacity-40">{d}</div>
-                  ))}
-                  {[null, null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((d, i) => (
-                    <div key={i} className={cn(
-                      "aspect-square rounded-full flex items-center justify-center text-[9px] font-bold",
-                      d === 10 ? "bg-brand-teal text-slate-900 scale-110" :
-                        d === 11 || d === 14 ? "bg-white/20 dark:bg-black/20" :
-                          d ? "opacity-50" : ""
-                    )}>{d}</div>
-                  ))}
+                <div className="my-3">
+                  <div className="grid grid-cols-7 gap-0.5 w-fit mx-auto">
+                    {["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map(d => (
+                      <div key={d} className="w-7 h-5 flex items-center justify-center text-[8px] font-bold opacity-40">{d}</div>
+                    ))}
+                    {[null, null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((d, i) => (
+                      <div key={i} className={cn(
+                        "w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold transition-transform",
+                        d === 10 ? "bg-brand-teal text-slate-900 scale-105 shadow-lg shadow-brand-teal/40" :
+                          d === 11 || d === 14 ? "bg-white/15 dark:bg-black/20" :
+                            d ? "opacity-40" : ""
+                      )}>{d}</div>
+                    ))}
+                  </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="relative flex h-3 w-3">
