@@ -30,12 +30,12 @@ const WorkflowStepItem = ({ step, index, progress, total }: any) => {
 
   return (
     <div className={cn(
-      "relative flex flex-col items-center w-[85vw] sm:w-[320px] md:w-[380px] shrink-0 transition-all duration-700",
+      "relative flex flex-col items-center w-[85vw] sm:w-[320px] md:w-[380px] shrink-0 transition-all duration-700 z-30",
       isActive ? "opacity-100 translate-y-0" : "opacity-40 translate-y-8 grayscale"
     )}>
       {/* Circle (Centered over the absolute horizontal line) */}
       <div className={cn(
-        "flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center font-bold text-lg md:text-xl border-[4px] transition-all duration-700 relative z-20",
+        "flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center font-bold text-lg md:text-xl border-[4px] transition-all duration-700 relative bg-clip-padding",
         isActive
           ? "bg-blue-600 text-white border-blue-600 shadow-xl shadow-blue-500/40 scale-110"
           : "bg-slate-50 dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-400"
@@ -146,7 +146,7 @@ const StickyWorkflow = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter mb-4 text-slate-900 dark:text-white"
           >
-            Hành trình <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">Phát triển</span>
+            Quy trình <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">Phát triển</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -317,6 +317,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
                   className="px-10 py-4 w-full sm:w-auto rounded-full bg-slate-900 dark:bg-white dark:text-black font-bold text-white transition-all hover:opacity-90 active:scale-95 shadow-lg shadow-slate-900/20 dark:shadow-white/5"
                 >
                   Bắt đầu dự án
@@ -324,6 +325,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(0,0,0,0.05)" }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
                   className="px-10 py-4 w-full sm:w-auto rounded-full bg-white/50 dark:bg-white/10 border border-slate-200 dark:border-white/10 font-bold text-slate-700 dark:text-slate-200 transition-all hover:bg-slate-100 dark:hover:bg-white/20 hover:border-slate-300 active:scale-95"
                 >
                   Xem sản phẩm
@@ -352,7 +354,8 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="flex flex-col items-center gap-2 select-none pointer-events-none pb-4"
+            onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+            className="flex flex-col items-center gap-2 select-none cursor-pointer hover:opacity-80 transition-opacity pb-4"
           >
             <span className="text-xs font-medium tracking-widest text-slate-400 dark:text-slate-500 uppercase">Cuộn xuống</span>
             {/* Vertical line */}
@@ -386,6 +389,7 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[340px] gap-4 md:gap-6">
+            {/* PROJECT 1: ShopVN - Full E-Commerce Platform (Big card, 2x2) */}
             <BentoCard
               colSpan={2}
               rowSpan={2}
@@ -394,59 +398,41 @@ export default function Home() {
             >
               <div className="flex flex-col h-full justify-between p-2">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full px-3 py-1 mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                    Thương mại điện tử
-                  </span>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 font-display">Nền tảng Thương mại điện tử</h3>
-                  <p className="text-slate-500 dark:text-slate-400 max-w-md text-base leading-relaxed mb-4">Kiến trúc Headless CMS, Next.js 14, tốc độ tải trang dưới 1 giây. Hệ thống mượt mà và trực quan.</p>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full px-3 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                      Thương mại điện tử
+                    </span>
+                    <a href="https://shopvn.thanhbinhit.com" target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                      Xem dự án <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 font-display">ShopVN — Sàn TMĐT</h3>
+                  <p className="text-slate-500 dark:text-slate-400 max-w-md text-base leading-relaxed mb-4">
+                    Nền tảng thương mại điện tử đa nhà bán, xử lý <strong className="text-slate-700 dark:text-white">5,000+ đơn hàng/ngày</strong>. Tích hợp thanh toán VNPay, MoMo, ZaloPay. Tốc độ tải trang dưới 1 giây.
+                  </p>
                   <div className="flex flex-wrap gap-2 mb-2">
-                    {["Next.js 14", "Headless CMS", "Stripe", "Vercel"].map(tag => (
+                    {["Next.js 14", "TypeScript", "Prisma", "VNPay API", "Redis", "Vercel"].map(tag => (
                       <span key={tag} className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10 text-slate-600 dark:text-slate-300">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-                {/* Browser mock */}
-                <div className="w-full flex-1 min-h-40 bg-white/60 dark:bg-black/40 rounded-3xl border border-black/5 dark:border-white/5 backdrop-blur-xl overflow-hidden shadow-2xl relative mt-4">
-                  <div className="w-full h-9 bg-slate-100/70 dark:bg-white/5 flex items-center px-4 gap-2 border-b border-black/5 dark:border-white/5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-400 opacity-70" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-70" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-70" />
-                    <div className="flex-1 mx-4 h-5 bg-white/50 dark:bg-white/5 rounded-full flex items-center px-3 gap-2">
-                      <div className="w-2 h-2 rounded-full bg-green-400/60" />
-                      <div className="h-1.5 w-28 rounded-full bg-slate-300/50 dark:bg-white/10" />
-                    </div>
+                {/* Real screenshot mockup for ShopVN */}
+                <div className="w-full h-48 md:h-56 relative rounded-2xl overflow-hidden mt-4 border border-black/5 dark:border-white/5 shadow-xl group">
+                  <div className="absolute inset-0 bg-slate-200 dark:bg-zinc-800 animate-pulse" /> {/* Placeholder while loading or missing */}
+                  <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 z-10 flex-col gap-2 opacity-0 group-hover:opacity-10 transition-opacity">
+                    <MonitorSmartphone className="w-8 h-8 opacity-50" />
+                    <span className="text-sm font-medium">Ảnh dự án thật (16:9)</span>
                   </div>
-                  <div className="p-4 grid gap-3">
-                    <div className="flex justify-between items-center">
-                      <div className="h-3 w-14 rounded-full bg-slate-900/10 dark:bg-white/10" />
-                      <div className="flex gap-2">
-                        {[1, 2, 3].map(i => <div key={i} className="h-2 w-8 rounded-full bg-slate-300/40 dark:bg-white/5" />)}
-                        <div className="h-5 w-14 rounded-full bg-blue-500/20" />
-                      </div>
-                    </div>
-                    <div className="h-12 w-full rounded-xl bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/20 flex items-center px-4 gap-3">
-                      <div className="flex flex-col gap-1.5 flex-1">
-                        <div className="h-2.5 w-2/3 rounded-full bg-slate-400/30 dark:bg-white/20" />
-                        <div className="h-2 w-1/2 rounded-full bg-slate-300/30 dark:bg-white/10" />
-                      </div>
-                      <div className="h-7 w-16 rounded-full bg-blue-500/30" />
-                    </div>
-                    <div className="grid grid-cols-3 gap-2">
-                      {["from-pink-100 to-rose-100 dark:from-pink-900/20", "from-amber-100 to-yellow-100 dark:from-amber-900/20", "from-emerald-100 to-teal-100 dark:from-emerald-900/20"].map((g, i) => (
-                        <div key={i} className={`h-14 rounded-xl bg-gradient-to-br ${g} flex flex-col justify-end p-2 gap-1`}>
-                          <div className="h-2 w-3/4 rounded-full bg-black/10 dark:bg-white/15" />
-                          <div className="h-1.5 w-1/2 rounded-full bg-black/5 dark:bg-white/10" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <Image src="/projects/shopvn.png" alt="ShopVN Ecommerce Mockup" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 z-20" />
                 </div>
               </div>
             </BentoCard>
 
+            {/* PROJECT 2: EduPro LMS – Multi-platform (1x2) */}
             <BentoCard
               colSpan={1}
               rowSpan={2}
@@ -454,45 +440,37 @@ export default function Home() {
               whileHover={hoverScale}
             >
               <div className="flex flex-col h-full p-2">
-                <div className="p-4 bg-gradient-to-br from-brand-blue to-indigo-500 shadow-lg shadow-blue-500/30 w-fit rounded-2xl mb-5">
-                  <MonitorSmartphone className="w-7 h-7 text-white" />
+                <div className="flex items-center justify-between mb-2">
+                  <div className="p-3 bg-gradient-to-br from-brand-blue to-indigo-500 shadow-lg shadow-blue-500/30 w-fit rounded-2xl">
+                    <MonitorSmartphone className="w-6 h-6 text-white" />
+                  </div>
+                  <a href="https://edupro.thanhbinhit.com" target="_blank" rel="noopener noreferrer"
+                    className="text-[11px] font-bold text-slate-400 hover:text-slate-800 dark:hover:text-white flex items-center gap-1 transition-colors">
+                    Xem <ArrowUpRight className="w-3 h-3" />
+                  </a>
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-2 font-display">Ứng dụng đa kênh</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5">Trải nghiệm đồng nhất và hoàn hảo trên mọi nền tảng thiết bị.</p>
-                {/* Device previews – centered in available space */}
-                <div className="flex-1 flex items-center justify-center relative min-h-[180px]">
-                  {/* Tablet behind */}
-                  <div className="absolute left-4 bottom-4 w-28 h-36 rounded-2xl bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 shadow-xl overflow-hidden">
-                    <div className="h-3 w-full bg-slate-100 dark:bg-zinc-700 flex items-center justify-center">
-                      <div className="w-6 h-1 rounded-full bg-slate-300 dark:bg-zinc-500" />
-                    </div>
-                    <div className="p-2 grid gap-1.5 mt-1">
-                      <div className="h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40" />
-                      <div className="h-2 w-3/4 rounded-full bg-slate-200 dark:bg-zinc-600" />
-                      <div className="h-2 w-1/2 rounded-full bg-slate-100 dark:bg-zinc-700" />
-                      <div className="grid grid-cols-2 gap-1 mt-1">
-                        <div className="h-6 rounded-lg bg-slate-100 dark:bg-zinc-700/50" />
-                        <div className="h-6 rounded-lg bg-blue-50 dark:bg-blue-900/20" />
-                      </div>
-                    </div>
+                <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">EduPro LMS</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-1">
+                  Hệ thống học trực tuyến đa nền tảng. <strong className="text-slate-700 dark:text-slate-200">2,300+ học viên</strong>, video streaming, bài thi tự động chấm điểm.
+                </p>
+                <div className="flex flex-wrap gap-1 mb-4">
+                  {["Next.js", "WebRTC", "FFmpeg", "MySQL"].map(t => (
+                    <span key={t} className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-700/50">{t}</span>
+                  ))}
+                </div>
+                {/* Real screenshot mockup for EduPro (Mobile/Vertical) */}
+                <div className="flex-1 w-full min-h-[220px] relative rounded-t-2xl overflow-hidden mt-2 border border-black/5 dark:border-white/5 border-b-0 shadow-2xl translate-y-2 group">
+                  <div className="absolute inset-0 bg-slate-200 dark:bg-zinc-800 animate-pulse" /> {/* Placeholder */}
+                  <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 z-10 flex-col gap-2 opacity-0 group-hover:opacity-10 transition-opacity">
+                    <MonitorSmartphone className="w-8 h-8 opacity-50" />
+                    <span className="text-sm font-medium">Ảnh Mobile/App</span>
                   </div>
-                  {/* Phone front */}
-                  <div className="relative z-10 w-24 h-44 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-800 dark:from-zinc-900 dark:to-zinc-950 border-2 border-slate-700 dark:border-zinc-700 shadow-2xl overflow-hidden translate-x-6">
-                    <div className="h-5 w-full bg-slate-800 dark:bg-zinc-800 flex items-center justify-center">
-                      <div className="w-10 h-1.5 rounded-full bg-slate-900 dark:bg-zinc-900" />
-                    </div>
-                    <div className="p-2 grid gap-2 mt-1">
-                      <div className="h-12 rounded-xl bg-gradient-to-br from-blue-500/80 to-indigo-500/80" />
-                      <div className="h-2 w-3/4 rounded-full bg-white/20" />
-                      <div className="h-2 w-1/2 rounded-full bg-white/10" />
-                      <div className="h-7 rounded-xl bg-white/10 mt-1" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-12 bg-blue-500/20 blur-2xl rounded-full" />
+                  <Image src="/projects/edupro-mobile.png" alt="EduPro Mobile LMS Mockup" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 z-20" />
                 </div>
               </div>
             </BentoCard>
 
+            {/* PROJECT 3: BookEasy – Booking System (1x1 dark) */}
             <BentoCard
               colSpan={1}
               rowSpan={1}
@@ -502,12 +480,18 @@ export default function Home() {
             >
               <div className="flex flex-col h-full justify-between p-2 relative">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-brand-teal/20 blur-3xl rounded-full pointer-events-none" />
-                <div>
-                  <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">Hệ thống Đặt lịch</h3>
-                  <p className="opacity-60 font-medium text-sm">Đặt chỗ & Tư duy Logic</p>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">BookEasy</h3>
+                    <p className="opacity-60 font-medium text-sm">Đặt lịch & Quản lý khách hàng</p>
+                  </div>
+                  <a href="https://bookeasy.thanhbinhit.com" target="_blank" rel="noopener noreferrer"
+                    className="opacity-40 hover:opacity-100 transition-opacity">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
                 </div>
                 {/* Mini calendar */}
-                <div className="my-3">
+                <div className="my-2">
                   <div className="grid grid-cols-7 gap-0.5 w-fit mx-auto">
                     {["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map(d => (
                       <div key={d} className="w-7 h-5 flex items-center justify-center text-[8px] font-bold opacity-40">{d}</div>
@@ -527,11 +511,12 @@ export default function Home() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-teal"></span>
                   </span>
-                  <span className="text-sm font-semibold uppercase tracking-wider opacity-80">Hệ thống đang chạy</span>
+                  <span className="text-sm font-semibold uppercase tracking-wider opacity-80">340 lịch hẹn hôm nay</span>
                 </div>
               </div>
             </BentoCard>
 
+            {/* PROJECT 4: Analytics Dashboard (3 wide) */}
             <BentoCard
               colSpan={3}
               rowSpan={1}
@@ -540,18 +525,26 @@ export default function Home() {
             >
               <div className="relative z-10 flex flex-col md:flex-row items-center justify-between h-full gap-6 p-2">
                 <div className="max-w-sm shrink-0">
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-full px-3 py-1 mb-4">
-                    <Zap className="w-3 h-3" /> Real-time
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 font-display">Bảng điều khiển Dữ liệu</h3>
-                  <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Trực quan hóa dữ liệu thời gian thực. Giao diện tập trung vào những con số quan trọng nhất.</p>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-full px-3 py-1">
+                      <Zap className="w-3 h-3" /> Real-time
+                    </span>
+                    <a href="https://analytics.thanhbinhit.com" target="_blank" rel="noopener noreferrer"
+                      className="text-[11px] font-bold text-slate-400 hover:text-slate-800 dark:hover:text-white flex items-center gap-1 transition-colors">
+                      Xem <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 font-display">Analytics Pro Dashboard</h3>
+                  <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
+                    Dashboard phân tích kinh doanh thời gian thực cho <strong className="text-slate-700 dark:text-white">chuỗi 12 cửa hàng</strong>. Cập nhật mỗi 5 giây, cảnh báo thông minh.
+                  </p>
                 </div>
                 {/* KPI cards with mini bar charts */}
                 <div className="w-full md:flex-1 flex gap-3 overflow-x-auto pb-2 md:pb-0">
                   {[
-                    { label: "Doanh thu", value: "128M", change: "+12%", color: "from-emerald-400 to-teal-500" },
+                    { label: "Doanh thu tháng", value: "₫1.28 tỷ", change: "+12%", color: "from-emerald-400 to-teal-500" },
                     { label: "Đơn hàng", value: "4,281", change: "+8%", color: "from-blue-400 to-indigo-500" },
-                    { label: "Khách hàng", value: "9,540", change: "+23%", color: "from-purple-400 to-pink-500" },
+                    { label: "Khách mới", value: "9,540", change: "+23%", color: "from-purple-400 to-pink-500" },
                   ].map(({ label, value, change, color }) => (
                     <div key={label} className="flex-1 min-w-[130px] bg-white/60 dark:bg-black/30 border border-black/5 dark:border-white/5 rounded-2xl p-3 md:p-4 flex flex-col justify-between shadow-sm">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">{label}</p>
@@ -1022,7 +1015,7 @@ export default function Home() {
                 <div className="flex flex-row items-center gap-1.5 text-xs md:text-sm text-[#86868b] font-normal mt-2">
                   <span>Hoặc liên hệ:</span>
                   <a href="mailto:work@ledinhtuan.com" className="text-[#1d1d1f] dark:text-white hover:underline underline-offset-4 transition-colors font-semibold">
-                    work@ledinhtuan.com
+                    thanhbinhit2006@gmail.com
                   </a>
                 </div>
               </div>
@@ -1032,15 +1025,124 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="w-full max-w-6xl px-4 lg:px-8 py-16 mt-10 border-t border-black/5 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-sm text-slate-500 text-center md:text-left">
-          <p className="font-medium">© {new Date().getFullYear()} Thanh Bình IT. Thiết kế từ sự tĩnh lặng.</p>
-          <div className="flex items-center gap-8 font-medium">
-            <a href="#" className="hover:text-foreground transition-colors">Dribbble</a>
-            <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-foreground transition-colors">Liên hệ</a>
+        <footer className="w-full max-w-6xl px-4 lg:px-8 pt-16 pb-8 mt-10 border-t border-black/5 dark:border-white/5">
+          {/* Top grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
+
+            {/* Brand column */}
+            <div className="col-span-2 md:col-span-1 flex flex-col gap-5">
+              <div className="flex items-center gap-3">
+                <Image src="/logo.svg" alt="thanhbinhit logo" width={32} height={32} className="dark:invert" />
+                <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">thanhbinhit</span>
+              </div>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-[220px]">
+                Kỹ sư Phần mềm & Kiến trúc sư Web — Thiết kế những trải nghiệm số tinh tế và đáng nhớ.
+              </p>
+              {/* Social links */}
+              <div className="flex items-center gap-3 mt-1">
+                {[
+                  {
+                    label: "GitHub", href: "https://github.com/thanhbinhit", icon: (
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+                    )
+                  },
+                  {
+                    label: "LinkedIn", href: "https://linkedin.com/in/thanhbinhit", icon: (
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                    )
+                  },
+                  {
+                    label: "Email", href: "mailto:thanhbinhit2006@gmail.com", icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    )
+                  },
+                ].map(({ label, href, icon }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                    className="w-9 h-9 flex items-center justify-center rounded-full border border-black/10 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-all duration-200">
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Nav: Trang */}
+            <div className="flex flex-col gap-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500">Trang</p>
+              <ul className="space-y-3">
+                {[
+                  { label: "Trang chủ", href: "/" },
+                  { label: "Dự án", href: "#projects" },
+                  { label: "Đặc quyền", href: "#features" },
+                  { label: "Dịch vụ", href: "#services" },
+                  { label: "Liên hệ", href: "#cta" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <a href={href} className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">{label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Nav: Dịch vụ */}
+            <div className="flex flex-col gap-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500">Dịch vụ</p>
+              <ul className="space-y-3">
+                {[
+                  "Thiết kế Website",
+                  "Phát triển Ứng dụng",
+                  "Thiết kế UI/UX",
+                  "Hệ thống Quản lý",
+                  "Tối ưu Hiệu suất",
+                  "Tư vấn SEO",
+                ].map((s) => (
+                  <li key={s}>
+                    <a href="#services" className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">{s}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact info */}
+            <div className="flex flex-col gap-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500">Liên hệ</p>
+              <ul className="space-y-3">
+                <li>
+                  <a href="mailto:thanhbinhit2006@gmail.com" className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium break-all">
+                    thanhbinhit2006@gmail.com
+                  </a>
+                </li>
+                <li className="text-sm text-slate-500 dark:text-slate-400 font-medium">Việt Nam 🇻🇳</li>
+                <li className="text-sm text-slate-500 dark:text-slate-400 font-medium">Thứ 2 – Thứ 7, 8:00 – 18:00</li>
+              </ul>
+
+              {/* Tech badges */}
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {["Next.js", "React", "TypeScript", "Three.js"].map((t) => (
+                  <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-slate-400 border border-black/5 dark:border-white/5">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-black/5 dark:border-white/5">
+            <p className="text-xs text-slate-400 dark:text-slate-500 text-center sm:text-left">
+              © {new Date().getFullYear()} <strong className="text-slate-600 dark:text-slate-300">thanhbinhit</strong>. All rights reserved.
+            </p>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="group flex items-center gap-2 text-xs font-semibold text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-white transition-colors"
+            >
+              Lên đầu trang
+              <span className="w-7 h-7 flex items-center justify-center rounded-full border border-black/10 dark:border-white/10 group-hover:bg-slate-100 dark:group-hover:bg-white/10 transition-all">
+                <ArrowRight className="w-3 h-3 -rotate-90" />
+              </span>
+            </button>
           </div>
         </footer>
-      </div>
+      </div >
     </>
   );
 }
