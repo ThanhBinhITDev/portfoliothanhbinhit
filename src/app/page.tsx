@@ -315,18 +315,54 @@ export default function Home() {
             >
               <div className="flex flex-col h-full justify-between p-2">
                 <div>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full px-3 py-1 mb-4">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                    Thương mại điện tử
+                  </span>
                   <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 font-display">Nền tảng Thương mại điện tử</h3>
-                  <p className="text-slate-500 dark:text-slate-400 max-w-md text-lg leading-relaxed">Kiến trúc Headless CMS, Next.js 14, tốc độ tải trang dưới 1 giây. Hệ thống mượt mà và trực quan.</p>
-                </div>
-                <div className="w-full h-56 bg-white/50 dark:bg-black/40 rounded-3xl border border-black/5 dark:border-white/5 backdrop-blur-xl overflow-hidden mt-6 shadow-xl relative">
-                  <div className="w-full h-10 bg-black/5 dark:bg-white/5 flex items-center px-4 gap-2 border-b border-black/5 dark:border-white/5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-400 opacity-60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-60" />
+                  <p className="text-slate-500 dark:text-slate-400 max-w-md text-base leading-relaxed mb-4">Kiến trúc Headless CMS, Next.js 14, tốc độ tải trang dưới 1 giây. Hệ thống mượt mà và trực quan.</p>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {["Next.js 14", "Headless CMS", "Stripe", "Vercel"].map(tag => (
+                      <span key={tag} className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10 text-slate-600 dark:text-slate-300">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                  <div className="p-6 grid gap-4 opacity-40">
-                    <div className="h-6 w-1/3 bg-black/10 dark:bg-white/10 rounded-full" />
-                    <div className="h-20 w-full bg-black/5 dark:bg-white/5 rounded-xl border border-black/5 dark:border-white/5" />
+                </div>
+                {/* Browser mock */}
+                <div className="w-full flex-1 min-h-40 bg-white/60 dark:bg-black/40 rounded-3xl border border-black/5 dark:border-white/5 backdrop-blur-xl overflow-hidden shadow-2xl relative mt-4">
+                  <div className="w-full h-9 bg-slate-100/70 dark:bg-white/5 flex items-center px-4 gap-2 border-b border-black/5 dark:border-white/5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-400 opacity-70" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-70" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-70" />
+                    <div className="flex-1 mx-4 h-5 bg-white/50 dark:bg-white/5 rounded-full flex items-center px-3 gap-2">
+                      <div className="w-2 h-2 rounded-full bg-green-400/60" />
+                      <div className="h-1.5 w-28 rounded-full bg-slate-300/50 dark:bg-white/10" />
+                    </div>
+                  </div>
+                  <div className="p-4 grid gap-3">
+                    <div className="flex justify-between items-center">
+                      <div className="h-3 w-14 rounded-full bg-slate-900/10 dark:bg-white/10" />
+                      <div className="flex gap-2">
+                        {[1, 2, 3].map(i => <div key={i} className="h-2 w-8 rounded-full bg-slate-300/40 dark:bg-white/5" />)}
+                        <div className="h-5 w-14 rounded-full bg-blue-500/20" />
+                      </div>
+                    </div>
+                    <div className="h-12 w-full rounded-xl bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/20 flex items-center px-4 gap-3">
+                      <div className="flex flex-col gap-1.5 flex-1">
+                        <div className="h-2.5 w-2/3 rounded-full bg-slate-400/30 dark:bg-white/20" />
+                        <div className="h-2 w-1/2 rounded-full bg-slate-300/30 dark:bg-white/10" />
+                      </div>
+                      <div className="h-7 w-16 rounded-full bg-blue-500/30" />
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      {["from-pink-100 to-rose-100 dark:from-pink-900/20", "from-amber-100 to-yellow-100 dark:from-amber-900/20", "from-emerald-100 to-teal-100 dark:from-emerald-900/20"].map((g, i) => (
+                        <div key={i} className={`h-14 rounded-xl bg-gradient-to-br ${g} flex flex-col justify-end p-2 gap-1`}>
+                          <div className="h-2 w-3/4 rounded-full bg-black/10 dark:bg-white/15" />
+                          <div className="h-1.5 w-1/2 rounded-full bg-black/5 dark:bg-white/10" />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -335,35 +371,81 @@ export default function Home() {
             <BentoCard
               colSpan={1}
               rowSpan={2}
-              className="bg-brand-blue/5 border-brand-blue/10 dark:bg-brand-blue/[0.03] overflow-hidden"
+              className="bg-gradient-to-b from-brand-blue/5 to-indigo-500/5 border-brand-blue/10 dark:from-brand-blue/[0.05] dark:to-indigo-500/[0.03] overflow-hidden"
               whileHover={hoverScale}
             >
               <div className="flex flex-col h-full p-2">
-                <div className="p-4 bg-white dark:bg-zinc-800 shadow-sm w-fit rounded-2xl mb-6">
-                  <MonitorSmartphone className="w-7 h-7 text-brand-blue" />
+                <div className="p-4 bg-gradient-to-br from-brand-blue to-indigo-500 shadow-lg shadow-blue-500/30 w-fit rounded-2xl mb-5">
+                  <MonitorSmartphone className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold tracking-tight mb-2 font-display">Ứng dụng đa kênh</h3>
-                <p className="text-slate-500 dark:text-slate-400">Trải nghiệm đồng nhất và hoàn hảo trên mọi nền tảng thiết bị.</p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5">Trải nghiệm đồng nhất và hoàn hảo trên mọi nền tảng thiết bị.</p>
+                {/* Device previews */}
+                <div className="relative flex-1 flex items-end justify-center">
+                  {/* Tablet behind */}
+                  <div className="absolute bottom-10 left-0 w-28 h-36 rounded-2xl bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 shadow-xl overflow-hidden">
+                    <div className="h-3 w-full bg-slate-100 dark:bg-zinc-700 flex items-center justify-center">
+                      <div className="w-6 h-1 rounded-full bg-slate-300 dark:bg-zinc-500" />
+                    </div>
+                    <div className="p-2 grid gap-1.5 mt-1">
+                      <div className="h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40" />
+                      <div className="h-2 w-3/4 rounded-full bg-slate-200 dark:bg-zinc-600" />
+                      <div className="h-2 w-1/2 rounded-full bg-slate-100 dark:bg-zinc-700" />
+                      <div className="grid grid-cols-2 gap-1 mt-1">
+                        <div className="h-6 rounded-lg bg-slate-100 dark:bg-zinc-700/50" />
+                        <div className="h-6 rounded-lg bg-blue-50 dark:bg-blue-900/20" />
+                      </div>
+                    </div>
+                  </div>
+                  {/* Phone front */}
+                  <div className="relative z-10 w-24 h-44 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-800 dark:from-zinc-900 dark:to-zinc-950 border-2 border-slate-700 dark:border-zinc-700 shadow-2xl overflow-hidden mb-2">
+                    <div className="h-5 w-full bg-slate-800 dark:bg-zinc-800 flex items-center justify-center">
+                      <div className="w-10 h-1.5 rounded-full bg-slate-900 dark:bg-zinc-900" />
+                    </div>
+                    <div className="p-2 grid gap-2 mt-1">
+                      <div className="h-12 rounded-xl bg-gradient-to-br from-blue-500/80 to-indigo-500/80" />
+                      <div className="h-2 w-3/4 rounded-full bg-white/20" />
+                      <div className="h-2 w-1/2 rounded-full bg-white/10" />
+                      <div className="h-7 rounded-xl bg-white/10 mt-1" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-12 bg-blue-500/20 blur-2xl rounded-full" />
+                </div>
               </div>
             </BentoCard>
 
             <BentoCard
               colSpan={1}
               rowSpan={1}
-              className="bg-slate-900 text-white dark:bg-zinc-100 dark:text-black border-transparent"
+              className="bg-slate-900 text-white dark:bg-zinc-100 dark:text-black border-transparent overflow-hidden"
               whileHover={hoverScale}
             >
-              <div className="flex flex-col h-full justify-between p-2">
+              <div className="flex flex-col h-full justify-between p-2 relative">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-brand-teal/20 blur-3xl rounded-full pointer-events-none" />
                 <div>
-                  <h3 className="text-2xl font-bold tracking-tight mb-3 font-display">Hệ thống Đặt lịch</h3>
-                  <p className="opacity-70 font-medium">Đặt chỗ & Tư duy Logic</p>
+                  <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">Hệ thống Đặt lịch</h3>
+                  <p className="opacity-60 font-medium text-sm">Đặt chỗ & Tư duy Logic</p>
                 </div>
-                <div className="flex items-center gap-3 opacity-80">
+                {/* Mini calendar */}
+                <div className="grid grid-cols-7 gap-1 my-3">
+                  {["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map(d => (
+                    <div key={d} className="text-center text-[9px] font-bold opacity-40">{d}</div>
+                  ))}
+                  {[null, null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((d, i) => (
+                    <div key={i} className={cn(
+                      "aspect-square rounded-full flex items-center justify-center text-[9px] font-bold",
+                      d === 10 ? "bg-brand-teal text-slate-900 scale-110" :
+                        d === 11 || d === 14 ? "bg-white/20 dark:bg-black/20" :
+                          d ? "opacity-50" : ""
+                    )}>{d}</div>
+                  ))}
+                </div>
+                <div className="flex items-center gap-3">
                   <span className="relative flex h-3 w-3">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-teal"></span>
                   </span>
-                  <span className="text-sm font-semibold uppercase tracking-wider">Hệ thống đang chạy</span>
+                  <span className="text-sm font-semibold uppercase tracking-wider opacity-80">Hệ thống đang chạy</span>
                 </div>
               </div>
             </BentoCard>
@@ -371,17 +453,36 @@ export default function Home() {
             <BentoCard
               colSpan={3}
               rowSpan={1}
-              className="bg-brand-purple/5 border-brand-purple/10 dark:bg-brand-purple/[0.03]"
+              className="bg-gradient-to-br from-brand-purple/5 via-transparent to-pink-500/5 border-brand-purple/10 dark:from-brand-purple/[0.05] overflow-hidden"
               whileHover={hoverScale}
             >
-              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between h-full gap-8 p-2">
-                <div className="max-w-xl">
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between h-full gap-6 p-2">
+                <div className="max-w-sm shrink-0">
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-full px-3 py-1 mb-4">
+                    <Zap className="w-3 h-3" /> Real-time
+                  </span>
                   <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 font-display">Bảng điều khiển Dữ liệu</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">Trực quan hóa dữ liệu thời gian thực. Giao diện tĩnh lặng tập trung vào những con số quan trọng nhất.</p>
+                  <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Trực quan hóa dữ liệu thời gian thực. Giao diện tập trung vào những con số quan trọng nhất.</p>
                 </div>
-                <div className="flex gap-4 w-full md:w-auto overflow-hidden">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="w-20 md:w-32 h-24 md:h-36 rounded-2xl bg-white/50 dark:bg-black/50 border border-black/5 dark:border-white/5 shadow-sm" />
+                {/* KPI cards with mini bar charts */}
+                <div className="flex-1 w-full md:w-auto flex gap-3 overflow-hidden">
+                  {[
+                    { label: "Doanh thu", value: "128M", change: "+12%", color: "from-emerald-400 to-teal-500" },
+                    { label: "Đơn hàng", value: "4,281", change: "+8%", color: "from-blue-400 to-indigo-500" },
+                    { label: "Khách hàng", value: "9,540", change: "+23%", color: "from-purple-400 to-pink-500" },
+                  ].map(({ label, value, change, color }) => (
+                    <div key={label} className="flex-1 min-w-0 bg-white/60 dark:bg-black/30 border border-black/5 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">{label}</p>
+                      <p className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">{value}</p>
+                      <div className={`mt-2 inline-flex items-center gap-1 text-xs font-bold text-white bg-gradient-to-r ${color} rounded-full px-2 py-0.5 w-fit`}>
+                        <ArrowRight className="w-3 h-3" />{change}
+                      </div>
+                      <div className="flex items-end gap-0.5 mt-3 h-8">
+                        {[40, 65, 50, 80, 60, 90, 75].map((h, i) => (
+                          <div key={i} className={`flex-1 rounded-sm bg-gradient-to-t ${color} opacity-50`} style={{ height: `${h}%` }} />
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
