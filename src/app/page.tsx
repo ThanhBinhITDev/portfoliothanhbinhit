@@ -417,8 +417,8 @@ export default function Home() {
             <BentoCard
               colSpan={1}
               rowSpan={1}
-              className="text-white border-transparent overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
+              noGlass
+              className="bg-slate-900 text-white border-transparent overflow-hidden shadow-2xl"
               whileHover={hoverScale}
             >
               <div className="flex flex-col h-full justify-between p-2 relative">
