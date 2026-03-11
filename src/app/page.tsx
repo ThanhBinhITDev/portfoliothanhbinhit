@@ -207,14 +207,15 @@ const hoverScale = {
 } as const;
 
 export default function Home() {
+  const [bgReady, setBgReady] = useState(false);
 
   return (
     <>
-      <HelloLoader />
-      <LiquidBackground />
+      <HelloLoader onDone={() => setBgReady(true)} />
+      {bgReady && <LiquidBackground />}
       <div className="flex flex-col items-center w-full pb-16 md:pb-24 space-y-16 md:space-y-28">
         {/* Hero Section Redesigned */}
-        <section className="relative z-10 pt-24 pb-12 px-4 sm:px-6 min-h-screen flex items-center justify-center w-full">
+        <section className="relative z-10 pt-24 pb-8 px-4 sm:px-6 min-h-screen flex flex-col items-center justify-between w-full gap-6">
           <div className="max-w-6xl w-full">
             <div className="glass-panel p-6 sm:p-10 md:p-16 lg:p-24 rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] text-center relative overflow-hidden" data-purpose="hero-container">
               {/* Subtle Glow behind text */}
@@ -242,7 +243,7 @@ export default function Home() {
               {/* Main Headline */}
               <motion.h1
                 variants={itemVariants}
-                className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight leading-[1.05] text-gradient-display mb-8 md:mb-10"
+                className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.1] text-gradient-display pb-2 mb-8 md:mb-10"
               >
                 Xin chào bạn!
               </motion.h1>
@@ -292,6 +293,31 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
+
+          {/* Scroll Down Indicator - flex sibling, not absolute */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="flex flex-col items-center gap-2 select-none pointer-events-none pb-4"
+          >
+            <span className="text-xs font-medium tracking-widest text-slate-400 dark:text-slate-500 uppercase">Cuộn xuống</span>
+            {/* Vertical line */}
+            <motion.div
+              className="w-px h-10 bg-gradient-to-b from-slate-300 to-transparent dark:from-slate-600"
+              initial={{ scaleY: 0, originY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ delay: 1.4, duration: 0.6 }}
+            />
+            {/* Mouse icon */}
+            <div className="w-7 h-11 rounded-full border-2 border-slate-300 dark:border-slate-600 flex items-start justify-center pt-2">
+              <motion.div
+                className="w-1 h-2 rounded-full bg-slate-400 dark:bg-slate-500"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+              />
+            </div>
+          </motion.div>
         </section>
 
         {/* Projects: Bento Grid */}
@@ -302,7 +328,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-12 text-center md:text-left"
           >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 font-display text-gradient-display">Dự án chọn lọc.</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 font-display text-gradient-display pb-2">Dự án chọn lọc.</h2>
             <p className="text-slate-500 text-lg md:text-xl">Dự án tiêu biểu ứng dụng sự hài hòa của Hệ thống Thiết kế Apple.</p>
           </motion.div>
 
@@ -511,7 +537,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gradient-display mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gradient-display pb-2 mb-6"
             >
               Sức mạnh của Sự tinh tế.
             </motion.h2>
