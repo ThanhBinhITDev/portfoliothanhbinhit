@@ -144,7 +144,7 @@ const StickyWorkflow = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter mb-4 text-slate-900 dark:text-white"
           >
-            Hành trình <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">Kiến tạo</span>
+            Hành trình <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">Phát triển</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
