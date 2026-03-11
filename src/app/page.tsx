@@ -354,8 +354,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-            className="flex flex-col items-center gap-2 select-none cursor-pointer hover:opacity-80 transition-opacity pb-4"
+            className="flex flex-col items-center gap-2 select-none pointer-events-none pb-4"
           >
             <span className="text-xs font-medium tracking-widest text-slate-400 dark:text-slate-500 uppercase">Cuộn xuống</span>
             {/* Vertical line */}
