@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, Variants, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useScroll, useTransform, motion, Variants, AnimatePresence, useMotionValueEvent } from "framer-motion";
 import { LiquidBackground } from "@/components/ui/liquid-background";
+import { ThemeToggle } from "@/components/theme-toggle";
+import Image from "next/image";
 import { BentoCard } from "@/components/ui/bento-card";
 import { ArrowRight, ArrowUpRight, CheckCircle2, Check, Clock, Code2, Layers, Lightbulb, MonitorSmartphone, Settings, Zap } from "lucide-react";
 import { HelloLoader } from "@/components/hello-loader";
@@ -221,6 +223,57 @@ export default function Home() {
               {/* Subtle Glow behind text */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/5 blur-[120px] pointer-events-none"></div>
 
+              {/* Floating SVG Decorations */}
+              {/* Decor 1: Top Left */}
+              <motion.div
+                className="absolute top-[10%] left-[5%] md:top-[5%] md:left-[10%] w-24 md:w-40 h-24 md:h-40 opacity-50 dark:opacity-40 pointer-events-none"
+                animate={{
+                  y: [0, -20, 0],
+                  rotate: [0, 5, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Image src="/svgs/decorate-1.svg" alt="Decoration 1" fill className="object-contain" />
+              </motion.div>
+
+              {/* Decor 2: Bottom Right */}
+              <motion.div
+                className="absolute bottom-[20%] right-[2%] md:bottom-[15%] md:right-[8%] w-28 md:w-48 h-28 md:h-48 opacity-50 dark:opacity-40 pointer-events-none"
+                animate={{
+                  y: [0, 25, 0],
+                  rotate: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
+              >
+                <Image src="/svgs/decorate-2.svg" alt="Decoration 2" fill className="object-contain" />
+              </motion.div>
+
+              {/* Decor 3: Top Right (Small) */}
+              <motion.div
+                className="absolute top-[25%] right-[10%] md:top-[20%] md:right-[20%] w-16 md:w-24 h-16 md:h-24 opacity-40 dark:opacity-30 pointer-events-none"
+                animate={{
+                  y: [0, 15, 0],
+                  rotate: [0, 15, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 2,
+                }}
+              >
+                <Image src="/svgs/decorate-3.svg" alt="Decoration 3" fill className="object-contain" />
+              </motion.div>
+
               {/* Tech Badge */}
               <motion.div
                 variants={itemVariants}
@@ -406,10 +459,10 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold tracking-tight mb-2 font-display">Ứng dụng đa kênh</h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5">Trải nghiệm đồng nhất và hoàn hảo trên mọi nền tảng thiết bị.</p>
-                {/* Device previews */}
-                <div className="relative flex-1 flex items-end justify-center">
+                {/* Device previews – centered in available space */}
+                <div className="flex-1 flex items-center justify-center relative min-h-[180px]">
                   {/* Tablet behind */}
-                  <div className="absolute bottom-10 left-0 w-28 h-36 rounded-2xl bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 shadow-xl overflow-hidden">
+                  <div className="absolute left-4 bottom-4 w-28 h-36 rounded-2xl bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 shadow-xl overflow-hidden">
                     <div className="h-3 w-full bg-slate-100 dark:bg-zinc-700 flex items-center justify-center">
                       <div className="w-6 h-1 rounded-full bg-slate-300 dark:bg-zinc-500" />
                     </div>
@@ -424,7 +477,7 @@ export default function Home() {
                     </div>
                   </div>
                   {/* Phone front */}
-                  <div className="relative z-10 w-24 h-44 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-800 dark:from-zinc-900 dark:to-zinc-950 border-2 border-slate-700 dark:border-zinc-700 shadow-2xl overflow-hidden mb-2">
+                  <div className="relative z-10 w-24 h-44 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-800 dark:from-zinc-900 dark:to-zinc-950 border-2 border-slate-700 dark:border-zinc-700 shadow-2xl overflow-hidden translate-x-6">
                     <div className="h-5 w-full bg-slate-800 dark:bg-zinc-800 flex items-center justify-center">
                       <div className="w-10 h-1.5 rounded-full bg-slate-900 dark:bg-zinc-900" />
                     </div>
@@ -522,7 +575,22 @@ export default function Home() {
         <StickyWorkflow />
 
         {/* Apple-style Bento Grid Features Section */}
-        <section id="features" className="w-full max-w-6xl px-4 lg:px-8 py-24">
+        <section id="features" className="w-full max-w-6xl px-4 lg:px-8 py-24 relative">
+          {/* Floating Decor SVGs */}
+          <motion.div
+            className="absolute top-[10%] left-[-5%] w-32 md:w-56 h-32 md:h-56 opacity-30 pointer-events-none hidden md:block"
+            animate={{ y: [0, 30, 0], rotate: [0, 10, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Image src="/svgs/decorate-4.svg" alt="Decor 4" fill className="object-contain" />
+          </motion.div>
+          <motion.div
+            className="absolute bottom-[20%] right-[-5%] w-48 md:w-72 h-48 md:h-72 opacity-20 pointer-events-none hidden md:block"
+            animate={{ y: [0, -40, 0], rotate: [0, -15, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          >
+            <Image src="/svgs/decorate-5.svg" alt="Decor 5" fill className="object-contain" />
+          </motion.div>
           <div className="flex flex-col items-center text-center mb-16 px-4">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -878,6 +946,14 @@ export default function Home() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="w-full relative rounded-[3rem] overflow-hidden bg-white/40 dark:bg-zinc-950/40 glass-panel backdrop-blur-3xl border border-black/5 dark:border-white/5 py-24 md:py-32 lg:py-40 text-center flex flex-col items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)]"
           >
+            {/* CTA specific Floating SVG Decoration */}
+            <motion.div
+              className="absolute top-[-10%] right-[-5%] w-48 md:w-80 h-48 md:h-80 opacity-40 mix-blend-overlay dark:mix-blend-normal pointer-events-none z-0"
+              animate={{ y: [0, 20, 0], rotate: [0, -10, 0], scale: [1, 1.05, 1] }}
+              transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Image src="/svgs/decorate-6.svg" alt="Decor 6" fill className="object-contain" />
+            </motion.div>
             {/* Mesh Gradient Background Layer (Purple, Pink, Blue) */}
             <div className="absolute inset-0 z-0 bg-gradient-to-br from-indigo-100/50 via-purple-100/50 to-pink-100/50 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20 opacity-80" />
 

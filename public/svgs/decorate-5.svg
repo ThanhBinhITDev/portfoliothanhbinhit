@@ -1,0 +1,15 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-5" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.6" />
+    </linearGradient>
+    <filter id="blur-5" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="20" />
+    </filter>
+  </defs>
+  <!-- Main distorted shape -->
+  <path fill="url(#gradient-5)" filter="url(#blur-5)" d="M358.5,364.5C317,411,241,438,171,421.5C101,405,37,345,21.5,274.5C6,204,39,123,91.5,75.5C144,28,216,14,287,22.5C358,31,428,62,456.5,123.5C485,185,472,277,432.5,333.5C393,390,327,411,287,411C247,411,233,390,244,364.5Z" />
+  <!-- Inner glassy ring highlight -->
+  <circle cx="250" cy="250" r="100" fill="none" stroke="#ffffff" stroke-width="30" stroke-opacity="0.5" filter="blur(6px)" />
+</svg>
