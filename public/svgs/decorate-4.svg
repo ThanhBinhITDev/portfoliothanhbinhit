@@ -1,0 +1,15 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#3b82f6" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.6" />
+    </linearGradient>
+    <filter id="blur-4" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="35" />
+    </filter>
+  </defs>
+  <path fill="url(#gradient-4)" filter="url(#blur-4)" d="M410.5,337.5C384,393,315,429,244,432C173,435,100,405,65,346.5C30,288,33,201,70.5,144C108,87,180,60,250,58C320,56,388,79,425.5,134.5C463,190,469.5,278,410.5,337.5Z" />
+  <!-- Glass reflection highlight -->
+  <path fill="#ffffff" fill-opacity="0.45" d="M380,150C310,100,190,120,130,190C160,110,310,90,380,150Z" filter="blur(8px)" />
+</svg>
