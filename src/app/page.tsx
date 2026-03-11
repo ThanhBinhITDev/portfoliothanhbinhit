@@ -212,11 +212,11 @@ export default function Home() {
     <>
       <HelloLoader />
       <LiquidBackground />
-      <div className="flex flex-col items-center w-full pb-24 space-y-32">
+      <div className="flex flex-col items-center w-full pb-16 md:pb-24 space-y-16 md:space-y-28">
         {/* Hero Section Redesigned */}
-        <section className="relative z-10 pt-32 pb-20 px-6 min-h-screen flex items-center justify-center w-full">
+        <section className="relative z-10 pt-24 pb-12 px-4 sm:px-6 min-h-screen flex items-center justify-center w-full">
           <div className="max-w-6xl w-full">
-            <div className="glass-panel p-12 md:p-32 rounded-[4rem] text-center relative overflow-hidden" data-purpose="hero-container">
+            <div className="glass-panel p-6 sm:p-10 md:p-16 lg:p-24 rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] text-center relative overflow-hidden" data-purpose="hero-container">
               {/* Subtle Glow behind text */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/5 blur-[120px] pointer-events-none"></div>
 
@@ -242,7 +242,7 @@ export default function Home() {
               {/* Main Headline */}
               <motion.h1
                 variants={itemVariants}
-                className="font-display text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-[1.05] text-gradient-display mb-10"
+                className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight leading-[1.05] text-gradient-display mb-8 md:mb-10"
               >
                 Xin chào bạn!
               </motion.h1>
@@ -250,7 +250,7 @@ export default function Home() {
               {/* Sub-headline */}
               <motion.p
                 variants={itemVariants}
-                className="max-w-2xl mx-auto text-lg md:text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-16"
+                className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 md:mb-16"
               >
                 Xây dựng web cùng <strong className="text-slate-900 dark:text-white font-semibold">thanhbinhit</strong> — khẳng định <span className="text-slate-800 dark:text-slate-200">thương hiệu</span>, phát triển <span className="text-slate-800 dark:text-slate-200">doanh nghiệp</span> của bạn.
               </motion.p>
@@ -279,10 +279,10 @@ export default function Home() {
               {/* Trusted Tech Stacks */}
               <motion.div
                 variants={itemVariants}
-                className="mt-24 pt-12 border-t border-slate-200/50 dark:border-white/10"
+                className="mt-12 md:mt-24 pt-8 md:pt-12 border-t border-slate-200/50 dark:border-white/10"
               >
-                <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500 dark:text-slate-400 mb-6">Chuyên môn trong các công nghệ hiện đại</p>
-                <div className="flex flex-wrap justify-center gap-12 opacity-40 hover:opacity-100 transition-all duration-500">
+                <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500 dark:text-slate-400 mb-4 md:mb-6">Chuyên môn trong các công nghệ hiện đại</p>
+                <div className="flex flex-wrap justify-center gap-6 md:gap-12 opacity-40 hover:opacity-100 transition-all duration-500">
                   <span className="text-sm font-bold">React.js</span>
                   <span className="text-sm font-bold">Next.js</span>
                   <span className="text-sm font-bold">Node.js</span>
@@ -468,13 +468,13 @@ export default function Home() {
                   <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Trực quan hóa dữ liệu thời gian thực. Giao diện tập trung vào những con số quan trọng nhất.</p>
                 </div>
                 {/* KPI cards with mini bar charts */}
-                <div className="flex-1 w-full md:w-auto flex gap-3 overflow-hidden">
+                <div className="w-full md:flex-1 flex gap-3 overflow-x-auto pb-2 md:pb-0">
                   {[
                     { label: "Doanh thu", value: "128M", change: "+12%", color: "from-emerald-400 to-teal-500" },
                     { label: "Đơn hàng", value: "4,281", change: "+8%", color: "from-blue-400 to-indigo-500" },
                     { label: "Khách hàng", value: "9,540", change: "+23%", color: "from-purple-400 to-pink-500" },
                   ].map(({ label, value, change, color }) => (
-                    <div key={label} className="flex-1 min-w-0 bg-white/60 dark:bg-black/30 border border-black/5 dark:border-white/5 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+                    <div key={label} className="flex-1 min-w-[130px] bg-white/60 dark:bg-black/30 border border-black/5 dark:border-white/5 rounded-2xl p-3 md:p-4 flex flex-col justify-between shadow-sm">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">{label}</p>
                       <p className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">{value}</p>
                       <div className={`mt-2 inline-flex items-center gap-1 text-xs font-bold text-white bg-gradient-to-r ${color} rounded-full px-2 py-0.5 w-fit`}>
@@ -794,7 +794,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="group relative flex flex-col p-8 md:p-10 rounded-[36px] bg-slate-50 dark:bg-zinc-900/40 border border-slate-200/50 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none hover:-translate-y-2 transition-transform duration-500 cursor-pointer overflow-hidden glass-panel"
+                className="group relative flex flex-col p-6 md:p-8 lg:p-10 rounded-[28px] md:rounded-[36px] bg-slate-50 dark:bg-zinc-900/40 border border-slate-200/50 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none hover:-translate-y-2 transition-transform duration-500 cursor-pointer overflow-hidden glass-panel"
               >
                 {/* Top Left Icon Container */}
                 <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-inner bg-gradient-to-br", service.gradient)}>
@@ -844,7 +844,7 @@ export default function Home() {
         </section>
 
         {/* CTA (Call To Action) Section - Hybrid Pastel Glass Style */}
-        <section id="cta" className="w-full max-w-6xl mx-auto px-4 lg:px-8 py-32 md:py-48 relative z-10 flex flex-col items-center justify-center">
+        <section id="cta" className="w-full max-w-6xl mx-auto px-4 lg:px-8 py-16 md:py-32 lg:py-48 relative z-10 flex flex-col items-center justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.98, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
