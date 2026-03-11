@@ -46,6 +46,7 @@ export function BentoCard({ children, className, colSpan = 1, rowSpan = 1, noGla
         spanClasses.row[rowSpan],
         className
       )}
+      style={{ willChange: "transform" }}
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
