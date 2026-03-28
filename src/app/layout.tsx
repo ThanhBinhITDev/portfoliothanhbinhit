@@ -13,19 +13,18 @@ const inter = Inter({
 const SITE_URL = "https://thanhbinhit.com";
 
 export const metadata: Metadata = {
-  // ── Title ──────────────────────────────────────────────────
   title: {
-    default: "Thanh Bình IT | Thiết kế & Phát triển Website Chuyên nghiệp",
-    template: "%s | Thanh Bình IT",
+    default: "Lê Thanh Bình | Full-stack Developer & Thanh Binh IT",
+    template: "%s | Lê Thanh Bình",
   },
-
-  // ── Description (155-160 ký tự để hiển thị đủ trên Google) ──
   description:
-    "Thanh Bình IT – Kỹ sư phần mềm chuyên thiết kế website, xây dựng ứng dụng web, phát triển hệ thống quản lý và tối ưu hiệu suất. Uy tín – Chất lượng – Đúng hạn.",
-
-  // ── Keywords (từ khóa SEO) ──────────────────────────────────
+    "Lê Thanh Bình, còn được biết đến là Thanh Binh IT hoặc thanhbinhit, là Full-stack Developer tại Việt Nam chuyên thiết kế website, landing page, web app, hệ thống quản trị, app di động và giải pháp SEO kỹ thuật.",
   keywords: [
+    "Lê Thanh Bình",
+    "Le Thanh Binh",
+    "Thanh Binh IT",
     "thiết kế website",
+    "full-stack developer",
     "phát triển web",
     "làm website chuyên nghiệp",
     "web developer Việt Nam",
@@ -42,17 +41,12 @@ export const metadata: Metadata = {
     "full stack developer",
   ],
 
-  // ── Canonical URL ────────────────────────────────────────────
   alternates: {
     canonical: SITE_URL,
   },
-
-  // ── Authors / Creator ────────────────────────────────────────
-  authors: [{ name: "Thanh Bình IT", url: SITE_URL }],
-  creator: "Thanh Bình IT",
-  publisher: "Thanh Bình IT",
-
-  // ── Robots ──────────────────────────────────────────────────
+  authors: [{ name: "Lê Thanh Bình", url: SITE_URL }],
+  creator: "Lê Thanh Bình",
+  publisher: "Thanh Binh IT",
   robots: {
     index: true,
     follow: true,
@@ -65,47 +59,36 @@ export const metadata: Metadata = {
     },
   },
 
-  // ── Open Graph (Facebook / Zalo / LinkedIn) ──────────────────
   openGraph: {
     type: "website",
     locale: "vi_VN",
     url: SITE_URL,
-    siteName: "Thanh Bình IT",
-    title: "Thanh Bình IT | Thiết kế & Phát triển Website Chuyên nghiệp",
+    siteName: "Thanh Binh IT",
+    title: "Lê Thanh Bình | Full-stack Developer & Thanh Binh IT",
     description:
-      "Thanh Bình IT – Kỹ sư phần mềm chuyên thiết kế website, phát triển ứng dụng web và tối ưu hiệu suất. Uy tín – Chất lượng – Đúng hạn.",
+      "Lê Thanh Bình là Full-stack Developer tại Việt Nam, phát triển website, web app, hệ thống quản trị, app di động và giải pháp số dưới thương hiệu cá nhân Thanh Binh IT.",
     images: [
       {
         url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Thanh Bình IT – Thiết kế & Phát triển Website",
+        alt: "Lê Thanh Bình - Full-stack Developer & Thanh Binh IT",
       },
     ],
   },
-
-  // ── Twitter Card ─────────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
-    title: "Thanh Bình IT | Thiết kế & Phát triển Website Chuyên nghiệp",
+    title: "Lê Thanh Bình | Full-stack Developer & Thanh Binh IT",
     description:
-      "Kỹ sư phần mềm – Thiết kế website đẹp, hiệu suất cao, chuẩn SEO. Liên hệ ngay!",
+      "Full-stack Developer tại Việt Nam, chuyên thiết kế website, landing page, web app, hệ thống quản trị và giải pháp kỹ thuật cao.",
     images: [`${SITE_URL}/og-image.png`],
     creator: "@thanhbinhit",
   },
-
-  // ── Icons ────────────────────────────────────────────────────
   icons: {
     icon: "/logo.svg",
     shortcut: "/logo.svg",
     apple: "/logo.svg",
   },
-
-  // ── Verification (Google Search Console / Bing) ──────────────
-  // verification: {
-  //   google: "GOOGLE_VERIFICATION_CODE",
-  //   other: { "msvalidate.01": "BING_CODE" },
-  // },
 };
 
 export default function RootLayout({
@@ -119,15 +102,38 @@ export default function RootLayout({
       {
         "@type": "Person",
         "@id": `${SITE_URL}/#person`,
-        name: "Thanh Bình IT",
+        name: "Lê Thanh Bình",
+        alternateName: ["Thanh Binh IT", "thanhbinhit"],
         url: SITE_URL,
         description:
-          "Kỹ sư Phần mềm & Kiến trúc sư Web – chuyên thiết kế website, phát triển ứng dụng và tối ưu hiệu suất hệ thống.",
-        jobTitle: "Kỹ sư Phần mềm & Kiến trúc sư Web",
-        knowsAbout: ["Next.js", "React", "TypeScript", "SEO", "UI/UX Design", "Three.js"],
+          "Lê Thanh Bình là Full-stack Developer tại Việt Nam, xây dựng website, landing page, web app, hệ thống quản trị, app di động, tool theo yêu cầu và game 2D/3D dưới thương hiệu cá nhân Thanh Binh IT.",
+        jobTitle: "Full-stack Developer",
+        homeLocation: {
+          "@type": "Country",
+          name: "Việt Nam",
+        },
+        email: "mailto:thanhbinhit2006@gmail.com",
+        telephone: "+84 819957249",
+        knowsAbout: [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Node.js",
+          "PHP",
+          "Python",
+          "Laravel",
+          "MySQL",
+          "MongoDB",
+          "Java",
+          "C#",
+          "C++",
+          "UI/UX Design",
+          "Technical SEO",
+          "Game Development",
+        ],
         sameAs: [
-          "https://github.com/thanhbinhit",
-          "https://linkedin.com/in/thanhbinhit",
+          "https://github.com/ThanhBinhITDev",
+          "https://www.facebook.com/thanhbinhittt",
         ],
         image: {
           "@type": "ImageObject",
@@ -137,18 +143,51 @@ export default function RootLayout({
         },
       },
       {
+        "@type": "Brand",
+        "@id": `${SITE_URL}/#brand`,
+        name: "Thanh Binh IT",
+        alternateName: ["thanhbinhit"],
+        url: SITE_URL,
+        logo: `${SITE_URL}/logo.svg`,
+        slogan: "Giải pháp website, web app và hệ thống số hiệu suất cao",
+        founder: { "@id": `${SITE_URL}/#person` },
+        sameAs: [
+          "https://github.com/ThanhBinhITDev",
+          "https://www.facebook.com/thanhbinhittt",
+        ],
+      },
+      {
         "@type": "WebSite",
         "@id": `${SITE_URL}/#website`,
         url: SITE_URL,
-        name: "Thanh Bình IT",
-        description: "Portfolio cá nhân – Thiết kế & Phát triển Website Chuyên nghiệp",
+        name: "Lê Thanh Bình | Thanh Binh IT",
+        description: "Portfolio cá nhân của Lê Thanh Bình, Full-stack Developer và thương hiệu cá nhân Thanh Binh IT.",
         author: { "@id": `${SITE_URL}/#person` },
+        publisher: { "@id": `${SITE_URL}/#brand` },
         inLanguage: "vi-VN",
         potentialAction: {
           "@type": "SearchAction",
           target: `${SITE_URL}/?s={search_term_string}`,
           "query-input": "required name=search_term_string",
         },
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${SITE_URL}/#services`,
+        name: "Thanh Binh IT",
+        areaServed: "Việt Nam",
+        url: SITE_URL,
+        provider: { "@id": `${SITE_URL}/#person` },
+        serviceType: [
+          "Thiết kế website",
+          "Landing page",
+          "Web app",
+          "Hệ thống quản trị",
+          "SEO kỹ thuật",
+          "Phát triển app iOS/Android",
+          "Viết tool theo yêu cầu",
+          "Game 2D/3D",
+        ],
       },
     ],
   };
