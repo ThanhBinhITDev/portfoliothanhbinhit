@@ -1,0 +1,47 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="58" y1="54" x2="594" y2="382" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF5FF"/>
+      <stop offset="1" stop-color="#E6F0FF"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="28" fill="url(#bg1)"/>
+  <rect x="36" y="34" width="568" height="352" rx="24" fill="white" fill-opacity="0.65" stroke="#D9E6F7" stroke-width="2"/>
+  <rect x="82" y="82" width="200" height="256" rx="36" fill="#071226"/>
+  <rect x="96" y="96" width="172" height="228" rx="28" fill="#FFFFFF"/>
+  <rect x="116" y="118" width="76" height="10" rx="5" fill="#B2C2DB"/>
+  <rect x="116" y="140" width="110" height="18" rx="9" fill="#111827"/>
+  <rect x="210" y="138" width="42" height="22" rx="11" fill="#DCFCE7"/>
+  <text x="231" y="153" text-anchor="middle" fill="#047857" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="700">Online</text>
+  <rect x="116" y="178" width="132" height="114" rx="24" fill="#F1F5F9"/>
+  <text x="136" y="206" fill="#94A3B8" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">DOANH SỐ</text>
+  <text x="136" y="224" fill="#94A3B8" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">HÔM NAY</text>
+  <text x="136" y="260" fill="#0F172A" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="800">₫124M</text>
+  <rect x="136" y="270" width="16" height="34" rx="8" fill="url(#bar1)"/>
+  <rect x="160" y="248" width="16" height="56" rx="8" fill="url(#bar1)"/>
+  <rect x="184" y="262" width="16" height="42" rx="8" fill="url(#bar1)"/>
+  <rect x="208" y="228" width="16" height="76" rx="8" fill="url(#bar1)"/>
+  <rect x="232" y="252" width="16" height="52" rx="8" fill="url(#bar1)"/>
+  <rect x="332" y="86" width="228" height="82" rx="22" fill="#0F172A"/>
+  <text x="360" y="116" fill="#94A3B8" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.6">OMNISALES</text>
+  <text x="360" y="144" fill="white" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="800">Điều khiển bán hàng</text>
+  <rect x="360" y="182" width="64" height="78" rx="18" fill="white"/>
+  <rect x="434" y="182" width="64" height="78" rx="18" fill="white"/>
+  <rect x="508" y="182" width="64" height="78" rx="18" fill="white"/>
+  <text x="392" y="208" text-anchor="middle" fill="#94A3B8" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">ĐƠN MỚI</text>
+  <text x="392" y="240" text-anchor="middle" fill="#0F172A" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="800">28</text>
+  <text x="466" y="208" text-anchor="middle" fill="#94A3B8" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">KHÁCH NÓNG</text>
+  <text x="466" y="240" text-anchor="middle" fill="#0F172A" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="800">12</text>
+  <text x="540" y="208" text-anchor="middle" fill="#94A3B8" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">XỬ LÝ</text>
+  <text x="540" y="240" text-anchor="middle" fill="#0F172A" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="800">04</text>
+  <rect x="332" y="278" width="228" height="74" rx="20" fill="white"/>
+  <text x="360" y="306" fill="#94A3B8" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.3">LỘ TRÌNH CHĂM SÓC</text>
+  <text x="360" y="330" fill="#0F172A" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700">Gọi lại khách A</text>
+  <text x="526" y="330" fill="#64748B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700">09:00</text>
+  <text x="360" y="350" fill="#0F172A" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700">Chốt đơn B2B</text>
+  <text x="520" y="350" fill="#64748B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700">11:30</text>
+</svg>
