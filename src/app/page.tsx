@@ -229,58 +229,31 @@ export default function Home() {
               {/* Subtle Glow behind text */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/5 blur-[120px] pointer-events-none"></div>
 
-              {/* Floating SVG Decorations */}
-              {/* Decor 1: Top Left */}
               <motion.div
-                className="absolute top-[10%] left-[5%] md:top-[5%] md:left-[10%] w-24 md:w-40 h-24 md:h-40 opacity-50 dark:opacity-40 pointer-events-none"
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 5, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                className="absolute left-[4%] top-[14%] hidden h-28 w-28 md:block lg:h-40 lg:w-40 opacity-70 pointer-events-none"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Image src="/svgs/decorate-1.svg" alt="Decoration 1" fill className="object-contain" />
+                <Image src="/svgs/hero-grid.svg" alt="Subtle dot grid" fill className="object-contain" />
               </motion.div>
 
-              {/* Decor 2: Bottom Right */}
               <motion.div
-                className="absolute bottom-[20%] right-[2%] md:bottom-[15%] md:right-[8%] w-28 md:w-48 h-28 md:h-48 opacity-50 dark:opacity-40 pointer-events-none"
-                animate={{
-                  y: [0, 25, 0],
-                  rotate: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
+                className="absolute right-[12%] top-[18%] hidden h-20 w-56 lg:block opacity-80 pointer-events-none"
+                animate={{ x: [0, 8, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Image src="/svgs/decorate-2.svg" alt="Decoration 2" fill className="object-contain" />
+                <Image src="/svgs/hero-wave.svg" alt="Subtle wave" fill className="object-contain" />
               </motion.div>
 
-              {/* Decor 3: Top Right (Small) */}
               <motion.div
-                className="absolute top-[25%] right-[10%] md:top-[20%] md:right-[20%] w-16 md:w-24 h-16 md:h-24 opacity-40 dark:opacity-30 pointer-events-none"
-                animate={{
-                  y: [0, 15, 0],
-                  rotate: [0, 15, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2,
-                }}
+                className="absolute right-[6%] top-[22%] hidden h-[260px] w-[260px] lg:block opacity-60 pointer-events-none"
+                animate={{ y: [0, 12, 0], rotate: [0, 4, 0] }}
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Image src="/svgs/decorate-3.svg" alt="Decoration 3" fill className="object-contain" />
+                <Image src="/svgs/hero-orbit.svg" alt="Subtle orbit graphic" fill className="object-contain" />
               </motion.div>
 
-              <div className="relative z-10 grid items-end gap-10 lg:grid-cols-[minmax(0,1.35fr)_360px] lg:gap-12">
+              <div className="relative z-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1.2fr)_360px] lg:gap-12">
                 <div className="max-w-3xl text-left">
                   <motion.div
                     variants={itemVariants}
@@ -301,14 +274,14 @@ export default function Home() {
 
                   <motion.h1
                     variants={itemVariants}
-                    className="mt-5 max-w-4xl text-4xl font-extrabold tracking-[-0.04em] text-slate-950 dark:text-white sm:text-5xl md:text-6xl lg:text-[4.25rem] lg:leading-[1.02]"
+                    className="mt-5 max-w-4xl text-4xl font-extrabold tracking-[-0.045em] text-slate-950 dark:text-white sm:text-5xl md:text-[3.6rem] md:leading-[1.02] lg:text-[4.1rem]"
                   >
-                    Thiết kế và phát triển sản phẩm số chỉn chu, nhanh và đủ lực để tăng trưởng.
+                    Thiết kế và phát triển sản phẩm số gọn, mạnh và đúng mục tiêu.
                   </motion.h1>
 
                   <motion.p
                     variants={itemVariants}
-                    className="mt-6 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 md:text-lg"
+                    className="mt-6 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 md:text-[1.05rem]"
                   >
                     Tôi xây dựng website, landing page, web app, hệ thống quản trị,
                     mobile app và các giải pháp automation cho doanh nghiệp cần một
@@ -364,7 +337,7 @@ export default function Home() {
 
                 <motion.aside
                   variants={itemVariants}
-                  className="relative rounded-[2rem] border border-slate-200/80 bg-white/75 p-6 shadow-xl shadow-slate-200/40 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/70 dark:shadow-black/20"
+                  className="relative self-start rounded-[2rem] border border-slate-200/80 bg-white/80 p-6 shadow-xl shadow-slate-200/40 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/70 dark:shadow-black/20 lg:mt-4"
                 >
                   <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent dark:via-white/20" />
                   <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
