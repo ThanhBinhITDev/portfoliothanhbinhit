@@ -1,24 +1,30 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useScroll, useTransform, motion, Variants, AnimatePresence, useMotionValueEvent } from "framer-motion";
+import { useScroll, useTransform, motion, Variants, useMotionValueEvent } from "framer-motion";
 import { LiquidBackground } from "@/components/ui/liquid-background";
-import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 import { BentoCard } from "@/components/ui/bento-card";
-import { ArrowRight, ArrowUpRight, CheckCircle2, Check, Clock, Code2, Layers, Lightbulb, MonitorSmartphone, Settings, Zap } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle2, Clock, Code2, Layers, Lightbulb, MonitorSmartphone, Settings, Zap } from "lucide-react";
 import { HelloLoader } from "@/components/hello-loader";
 import { cn } from "@/lib/utils";
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
+type WorkflowStep = {
+  num: string;
+  badge: string;
+  title: string;
+  subtitle: string;
+  desc: string;
 };
 
-const WorkflowStepItem = ({ step, index, progress, total }: any) => {
+type WorkflowStepItemProps = {
+  step: WorkflowStep;
+  index: number;
+  progress: ReturnType<typeof useScroll>["scrollYProgress"];
+  total: number;
+};
+
+const WorkflowStepItem = ({ step, index, progress, total }: WorkflowStepItemProps) => {
   const threshold = index / (total - 1); // 0, 0.25, 0.5, 0.75, 1
   const [isActive, setIsActive] = useState(false);
 
@@ -290,7 +296,7 @@ export default function Home() {
                 variants={itemVariants}
                 className="font-display text-3xl md:text-4xl mb-6 font-bold tracking-tight text-gradient-hero opacity-90"
               >
-                thanhbinhit
+                Lê Thanh Bình • thanhbinhit
               </motion.h2>
 
               {/* Main Headline */}
@@ -298,7 +304,7 @@ export default function Home() {
                 variants={itemVariants}
                 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.1] text-gradient-display pb-2 mb-8 md:mb-10"
               >
-                Xin chào bạn!
+                Full-stack Developer kiến tạo giải pháp số mạnh, nhanh và chuẩn thương hiệu.
               </motion.h1>
 
               {/* Sub-headline */}
@@ -306,7 +312,7 @@ export default function Home() {
                 variants={itemVariants}
                 className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 md:mb-16"
               >
-                Xây dựng web cùng <strong className="text-slate-900 dark:text-white font-semibold">thanhbinhit</strong> — khẳng định <span className="text-slate-800 dark:text-slate-200">thương hiệu</span>, phát triển <span className="text-slate-800 dark:text-slate-200">doanh nghiệp</span> của bạn.
+                <strong className="text-slate-900 dark:text-white font-semibold">Lê Thanh Bình</strong>, còn được biết đến với tên thương hiệu cá nhân <strong className="text-slate-900 dark:text-white font-semibold">Thanh Binh IT / thanhbinhit</strong>, chuyên thiết kế website, landing page, web app, hệ thống quản trị, app di động, tool theo yêu cầu và các sản phẩm kỹ thuật hiệu năng cao tại Việt Nam.
               </motion.p>
 
               {/* Interactive CTA Buttons */}
@@ -342,7 +348,8 @@ export default function Home() {
                   <span className="text-sm font-bold">React.js</span>
                   <span className="text-sm font-bold">Next.js</span>
                   <span className="text-sm font-bold">Node.js</span>
-                  <span className="text-sm font-bold">PostgreSQL</span>
+                  <span className="text-sm font-bold">TypeScript</span>
+                  <span className="text-sm font-bold">MySQL</span>
                   <span className="text-sm font-bold">TailwindCSS</span>
                 </div>
               </motion.div>
@@ -389,7 +396,7 @@ export default function Home() {
             className="mb-12 text-center md:text-left"
           >
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 font-display text-gradient-display pb-2">Dự án chọn lọc.</h2>
-            <p className="text-slate-500 text-lg md:text-xl">Dự án tiêu biểu ứng dụng sự hài hòa của Hệ thống Thiết kế Apple.</p>
+            <p className="text-slate-500 text-lg md:text-xl">Những dự án tiêu biểu giúp Google và khách hàng hiểu rõ năng lực thực chiến của Lê Thanh Bình và thương hiệu thanhbinhit.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[340px] gap-4 md:gap-6">
@@ -405,19 +412,19 @@ export default function Home() {
                   <div className="flex items-center justify-between mb-4">
                     <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full px-3 py-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                      Thương mại điện tử
+                      Fintech Automation
                     </span>
-                    <a href="https://shopvn.thanhbinhit.com" target="_blank" rel="noopener noreferrer"
+                    <a href="#cta"
                       className="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-                      Xem dự án <ArrowUpRight className="w-3.5 h-3.5" />
+                      Trao đổi dự án <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 font-display">ShopVN — Sàn TMĐT</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 font-display">AutoBank Gateway</h3>
                   <p className="text-slate-500 dark:text-slate-400 max-w-md text-base leading-relaxed mb-4">
-                    Nền tảng thương mại điện tử đa nhà bán, xử lý <strong className="text-slate-700 dark:text-white">5,000+ đơn hàng/ngày</strong>. Tích hợp thanh toán VNPay, MoMo, ZaloPay. Tốc độ tải trang dưới 1 giây.
+                    Hệ thống thanh toán tự động kết nối nhiều ngân hàng tại Việt Nam, đối soát giao dịch theo thời gian thực, phát hiện biến động số dư và tự động hóa luồng xử lý cho <strong className="text-slate-700 dark:text-white">khối vận hành tài chính cường độ cao</strong>.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-2">
-                    {["Next.js 14", "TypeScript", "Prisma", "VNPay API", "Redis", "Vercel"].map(tag => (
+                    {["Next.js", "Node.js", "TypeScript", "MySQL", "Banking APIs", "Realtime Queue"].map(tag => (
                       <span key={tag} className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10 text-slate-600 dark:text-slate-300">
                         {tag}
                       </span>
@@ -431,7 +438,7 @@ export default function Home() {
                     <MonitorSmartphone className="w-8 h-8 opacity-50" />
                     <span className="text-sm font-medium">Ảnh dự án thật (16:9)</span>
                   </div>
-                  <Image src="/projects/shopvn.png" alt="ShopVN Ecommerce Mockup" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 z-20" />
+                  <Image src="/projects/shopvn.png" alt="AutoBank Gateway Dashboard Mockup" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 z-20" />
                 </div>
               </div>
             </BentoCard>
@@ -448,17 +455,17 @@ export default function Home() {
                   <div className="p-3 bg-gradient-to-br from-brand-blue to-indigo-500 shadow-lg shadow-blue-500/30 w-fit rounded-2xl">
                     <MonitorSmartphone className="w-6 h-6 text-white" />
                   </div>
-                  <a href="https://edupro.thanhbinhit.com" target="_blank" rel="noopener noreferrer"
+                  <a href="#cta"
                     className="text-[11px] font-bold text-slate-400 hover:text-slate-800 dark:hover:text-white flex items-center gap-1 transition-colors">
-                    Xem <ArrowUpRight className="w-3 h-3" />
+                    Chi tiết <ArrowUpRight className="w-3 h-3" />
                   </a>
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">EduPro LMS</h3>
+                <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">OmniSales App</h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-1">
-                  Hệ thống học trực tuyến đa nền tảng. <strong className="text-slate-700 dark:text-slate-200">2,300+ học viên</strong>, video streaming, bài thi tự động chấm điểm.
+                  Ứng dụng bán hàng đa nền tảng cho đội ngũ kinh doanh di động, đồng bộ tồn kho, đơn hàng, chăm sóc khách hàng và báo cáo tức thời cho <strong className="text-slate-700 dark:text-slate-200">mô hình vận hành đa chi nhánh</strong>.
                 </p>
                 <div className="flex flex-wrap gap-1 mb-4">
-                  {["Next.js", "WebRTC", "FFmpeg", "MySQL"].map(t => (
+                  {["React Native", "Node.js", "MySQL", "Socket.IO"].map(t => (
                     <span key={t} className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-700/50">{t}</span>
                   ))}
                 </div>
@@ -469,7 +476,7 @@ export default function Home() {
                     <MonitorSmartphone className="w-8 h-8 opacity-50" />
                     <span className="text-sm font-medium">Ảnh Mobile/App</span>
                   </div>
-                  <Image src="/projects/edupro-mobile.png" alt="EduPro Mobile LMS Mockup" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 z-20" />
+                  <Image src="/projects/edupro-mobile.png" alt="OmniSales mobile app mockup" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 z-20" />
                 </div>
               </div>
             </BentoCard>
@@ -489,7 +496,7 @@ export default function Home() {
                     <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">BookEasy</h3>
                     <p className="opacity-60 font-medium text-sm">Đặt lịch & Quản lý khách hàng</p>
                   </div>
-                  <a href="https://bookeasy.thanhbinhit.com" target="_blank" rel="noopener noreferrer"
+                  <a href="#cta"
                     className="opacity-40 hover:opacity-100 transition-opacity">
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
@@ -515,7 +522,7 @@ export default function Home() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-teal"></span>
                   </span>
-                  <span className="text-sm font-semibold uppercase tracking-wider opacity-80">340 lịch hẹn hôm nay</span>
+                  <span className="text-sm font-semibold uppercase tracking-wider opacity-80">340 quy trình tự động hôm nay</span>
                 </div>
               </div>
             </BentoCard>
@@ -533,14 +540,14 @@ export default function Home() {
                     <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-full px-3 py-1">
                       <Zap className="w-3 h-3" /> Real-time
                     </span>
-                    <a href="https://analytics.thanhbinhit.com" target="_blank" rel="noopener noreferrer"
+                    <a href="#cta"
                       className="text-[11px] font-bold text-slate-400 hover:text-slate-800 dark:hover:text-white flex items-center gap-1 transition-colors">
-                      Xem <ArrowUpRight className="w-3 h-3" />
+                      Khám phá <ArrowUpRight className="w-3 h-3" />
                     </a>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 font-display">Analytics Pro Dashboard</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 font-display">OpsVision Command Center</h3>
                   <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Dashboard phân tích kinh doanh thời gian thực cho <strong className="text-slate-700 dark:text-white">chuỗi 12 cửa hàng</strong>. Cập nhật mỗi 5 giây, cảnh báo thông minh.
+                    Trung tâm điều hành dữ liệu thời gian thực dành cho doanh nghiệp cần nhìn toàn bộ vận hành trong một màn hình, từ doanh thu, đơn hàng, KPI đội ngũ đến cảnh báo tự động cho <strong className="text-slate-700 dark:text-white">chuỗi kinh doanh tăng trưởng nhanh</strong>.
                   </p>
                 </div>
                 {/* KPI cards with mini bar charts */}
@@ -613,7 +620,7 @@ export default function Home() {
               transition={{ delay: 0.2 }}
               className="max-w-2xl text-lg md:text-xl text-slate-500 dark:text-slate-400"
             >
-              Chúng tôi tập trung vào những chi tiết nhỏ nhất để tạo ra những trải nghiệm lớn nhất, mang chuẩn mực quốc tế vào từng dòng mã.
+              Thanh Binh IT tập trung vào trải nghiệm mượt, hiệu năng cao và cấu trúc kỹ thuật đủ mạnh để vừa lên thương hiệu, vừa phục vụ tăng trưởng dài hạn.
             </motion.p>
           </div>
 
@@ -835,7 +842,7 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               className="text-slate-500 dark:text-slate-400 text-lg md:text-xl max-w-2xl"
             >
-              Giải pháp số toàn diện, thiết kế riêng để khẳng định vị thế thương hiệu của bạn trên Internet.
+              Dịch vụ cốt lõi của Lê Thanh Bình tập trung vào các giải pháp số có thể triển khai thật, tối ưu thật và mở rộng thật cho doanh nghiệp tại Việt Nam.
             </motion.p>
           </div>
 
@@ -845,35 +852,35 @@ export default function Home() {
               {
                 icon: Code2,
                 title: "Thiết kế & Phát triển Web",
-                desc: "Xây dựng website chuẩn SEO, tốc độ cao với kiến trúc hiện đại (Next.js, React).",
-                features: ["Landing Page chuyển đổi cao", "Website Doanh nghiệp", "Tối ưu hóa Core Web Vitals"],
+                desc: "Thiết kế website, landing page và web app chuẩn SEO, tốc độ cao, tập trung mạnh vào chuyển đổi và nhận diện thương hiệu.",
+                features: ["Landing page chuyển đổi cao", "Website doanh nghiệp chuẩn SEO", "Tối ưu Core Web Vitals và technical SEO"],
                 gradient: "from-pink-500 to-rose-400",
                 textColor: "text-rose-500",
                 bgLight: "bg-rose-50"
               },
               {
                 icon: Layers,
-                title: "Phát triển Ứng dụng Quản lý",
-                desc: "Hệ thống SaaS, CRM, quản trị nội bộ linh hoạt, mở rộng không giới hạn.",
-                features: ["Dashboard đa chiều", "Kiến trúc Microservices", "Tích hợp API/Thanh toán"],
+                title: "Web App & Hệ thống Quản trị",
+                desc: "Xây dựng SaaS, CRM, ERP mini, dashboard điều hành và nền tảng quản trị nội bộ có khả năng mở rộng cao.",
+                features: ["Dashboard đa chiều", "Tích hợp API, thanh toán, realtime", "Kiến trúc đủ mạnh cho scale-up"],
                 gradient: "from-blue-500 to-indigo-400",
                 textColor: "text-blue-500",
                 bgLight: "bg-blue-50"
               },
               {
                 icon: MonitorSmartphone,
-                title: "Thiết kế UI/UX Đột phá",
-                desc: "Tạo ra những trải nghiệm mượt mà, tĩnh lặng theo triết lý Apple Design.",
-                features: ["Wireframe & Prototyping", "Thiết kế đa nền tảng", "Animation mượt mà (60fps)"],
+                title: "App Di động, Tool & Sản phẩm đặc thù",
+                desc: "Phát triển ứng dụng iOS/Android, tool theo yêu cầu, hệ thống tự động hóa và các sản phẩm kỹ thuật chuyên biệt.",
+                features: ["App mobile cho vận hành thực tế", "Tool nội bộ theo nhu cầu riêng", "Tự động hóa quy trình và xử lý dữ liệu"],
                 gradient: "from-emerald-500 to-teal-400",
                 textColor: "text-emerald-500",
                 bgLight: "bg-emerald-50"
               },
               {
                 icon: Settings,
-                title: "Vận hành & Tối ưu Hệ thống",
-                desc: "Bảo mật dự án nghiêm ngặt, tự động hóa quy trình triển khai (CI/CD).",
-                features: ["Quản lý Server Cloud", "Giám sát thời gian thực", "Kiểm thử & Bảo mật 256-bit"],
+                title: "Giải pháp nâng cao & R&D",
+                desc: "Từ game 2D/3D, tích hợp backend phức tạp đến tối ưu hệ thống và kiến trúc triển khai, mọi bài toán đều có thể được đóng gói thành giải pháp thực chiến.",
+                features: ["Game 2D/3D và tương tác thời gian thực", "Quản lý server, CI/CD, bảo mật", "Tư duy kỹ thuật đa ngôn ngữ và đa nền tảng"],
                 gradient: "from-orange-500 to-amber-400",
                 textColor: "text-orange-500",
                 bgLight: "bg-orange-50"
@@ -1010,7 +1017,7 @@ export default function Home() {
               {/* Actions Box */}
               <div className="flex flex-col items-center justify-center gap-6 w-full">
                 {/* Primary Button (Vibrant gradient, wide shadow restored) */}
-                <a href="#contact" className="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-full font-semibold text-base transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(59,130,246,0.6)] hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.7)] hover:-translate-y-0.5">
+                <a href="mailto:thanhbinhit2006@gmail.com" className="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-full font-semibold text-base transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(59,130,246,0.6)] hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.7)] hover:-translate-y-0.5">
                   <span>Bắt đầu dự án ngay</span>
                   <ArrowRight strokeWidth={1.5} className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
@@ -1018,7 +1025,7 @@ export default function Home() {
                 {/* Sub-Action / Contact info */}
                 <div className="flex flex-row items-center gap-1.5 text-xs md:text-sm text-[#86868b] font-normal mt-2">
                   <span>Hoặc liên hệ:</span>
-                  <a href="mailto:work@ledinhtuan.com" className="text-[#1d1d1f] dark:text-white hover:underline underline-offset-4 transition-colors font-semibold">
+                  <a href="mailto:thanhbinhit2006@gmail.com" className="text-[#1d1d1f] dark:text-white hover:underline underline-offset-4 transition-colors font-semibold">
                     thanhbinhit2006@gmail.com
                   </a>
                 </div>
@@ -1040,19 +1047,19 @@ export default function Home() {
                 <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">thanhbinhit</span>
               </div>
               <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-[220px]">
-                Kỹ sư Phần mềm & Kiến trúc sư Web — Thiết kế những trải nghiệm số tinh tế và đáng nhớ.
+                Lê Thanh Bình là Full-stack Developer xây dựng website, web app, hệ thống quản trị và giải pháp số hiệu năng cao dưới thương hiệu cá nhân thanhbinhit.
               </p>
               {/* Social links */}
               <div className="flex items-center gap-3 mt-1">
                 {[
                   {
-                    label: "GitHub", href: "https://github.com/thanhbinhit", icon: (
+                    label: "GitHub", href: "https://github.com/ThanhBinhITDev", icon: (
                       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
                     )
                   },
                   {
-                    label: "LinkedIn", href: "https://linkedin.com/in/thanhbinhit", icon: (
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                    label: "Facebook", href: "https://www.facebook.com/thanhbinhittt", icon: (
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.019 4.388 11.008 10.125 11.927v-8.437H7.078v-3.49h3.047V9.412c0-3.021 1.792-4.689 4.533-4.689 1.313 0 2.686.236 2.686.236v2.965H15.83c-1.491 0-1.956.931-1.956 1.887v2.262h3.328l-.532 3.49h-2.796V24C19.612 23.081 24 18.092 24 12.073z" /></svg>
                     )
                   },
                   {
@@ -1094,10 +1101,10 @@ export default function Home() {
                 {[
                   "Thiết kế Website",
                   "Phát triển Ứng dụng",
-                  "Thiết kế UI/UX",
+                  "App iOS/Android",
                   "Hệ thống Quản lý",
                   "Tối ưu Hiệu suất",
-                  "Tư vấn SEO",
+                  "Tool theo yêu cầu",
                 ].map((s) => (
                   <li key={s}>
                     <a href="#services" className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">{s}</a>
@@ -1115,13 +1122,18 @@ export default function Home() {
                     thanhbinhit2006@gmail.com
                   </a>
                 </li>
+                <li>
+                  <a href="tel:0819957249" className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium">
+                    0819 957 249
+                  </a>
+                </li>
                 <li className="text-sm text-slate-500 dark:text-slate-400 font-medium">Việt Nam 🇻🇳</li>
                 <li className="text-sm text-slate-500 dark:text-slate-400 font-medium">Thứ 2 – Thứ 7, 8:00 – 18:00</li>
               </ul>
 
               {/* Tech badges */}
               <div className="flex flex-wrap gap-1.5 mt-2">
-                {["Next.js", "React", "TypeScript", "Three.js"].map((t) => (
+                {["Next.js", "React", "TypeScript", "Node.js"].map((t) => (
                   <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-slate-400 border border-black/5 dark:border-white/5">
                     {t}
                   </span>
@@ -1150,4 +1162,3 @@ export default function Home() {
     </>
   );
 }
-

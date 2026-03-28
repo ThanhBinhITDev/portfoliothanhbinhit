@@ -9,7 +9,7 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "#projects", label: "Dự án" },
-  { href: "#workflow", label: "Quy trình" },
+  { href: "#workflow-sticky", label: "Quy trình" },
   { href: "#services", label: "Dịch vụ" },
 ];
 
@@ -57,7 +57,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
             <Link
-              href="mailto:contact@thanhbinhit.com"
+              href="mailto:thanhbinhit2006@gmail.com"
               className="bg-slate-950 dark:bg-white dark:text-black text-white px-5 py-2 rounded-full font-medium text-sm hover:opacity-90 transition-all shadow-md shadow-slate-950/10"
             >
               Liên hệ
@@ -106,7 +106,7 @@ export function Navbar() {
               ))}
               <div className="mt-2 pt-3 border-t border-black/5 dark:border-white/5">
                 <Link
-                  href="mailto:contact@thanhbinhit.com"
+                  href="mailto:thanhbinhit2006@gmail.com"
                   onClick={() => setIsOpen(false)}
                   className="flex items-center justify-center w-full bg-slate-950 dark:bg-white dark:text-black text-white px-5 py-3 rounded-xl font-semibold text-sm hover:opacity-90 transition-all"
                 >
