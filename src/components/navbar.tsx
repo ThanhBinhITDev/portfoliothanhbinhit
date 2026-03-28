@@ -8,9 +8,12 @@ import { ThemeToggle } from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+  { href: "/gioi-thieu", label: "Giới thiệu" },
+  { href: "/du-an", label: "Dự án" },
+  { href: "/dich-vu", label: "Dịch vụ" },
   { href: "#projects", label: "Dự án" },
   { href: "#workflow-sticky", label: "Quy trình" },
-  { href: "#services", label: "Dịch vụ" },
+  { href: "#services", label: "Dịch vụ Home" },
 ];
 
 export function Navbar() {

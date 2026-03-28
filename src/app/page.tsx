@@ -1082,6 +1082,9 @@ export default function Home() {
               <ul className="space-y-3">
                 {[
                   { label: "Trang chủ", href: "/" },
+                  { label: "Giới thiệu", href: "/gioi-thieu" },
+                  { label: "Dự án SEO", href: "/du-an" },
+                  { label: "Dịch vụ SEO", href: "/dich-vu" },
                   { label: "Dự án", href: "#projects" },
                   { label: "Đặc quyền", href: "#features" },
                   { label: "Dịch vụ", href: "#services" },
