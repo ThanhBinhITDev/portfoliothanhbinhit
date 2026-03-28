@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { useScroll, useTransform, motion, Variants, useMotionValueEvent } from "framer-motion";
 import { LiquidBackground } from "@/components/ui/liquid-background";
 import Image from "next/image";
-import { BentoCard } from "@/components/ui/bento-card";
 import { ArrowRight, ArrowUpRight, CheckCircle2, Clock, Code2, Layers, Lightbulb, MonitorSmartphone, Settings, Zap } from "lucide-react";
 import { HelloLoader } from "@/components/hello-loader";
 import { cn } from "@/lib/utils";
@@ -207,12 +206,6 @@ const itemVariants: Variants = {
     transition: { type: "spring", stiffness: 260, damping: 20 } as const
   },
 };
-
-const hoverScale = {
-  scale: 1.02,
-  y: -5,
-  transition: { type: "spring", stiffness: 400, damping: 25 } as const
-} as const;
 
 export default function Home() {
   const [bgReady, setBgReady] = useState(false);
@@ -420,186 +413,303 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 text-center md:text-left"
+            className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
           >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 font-display text-gradient-display pb-2">Dự án chọn lọc.</h2>
-            <p className="text-slate-500 text-lg md:text-xl">Những dự án tiêu biểu giúp Google và khách hàng hiểu rõ năng lực thực chiến của Lê Thanh Bình và thương hiệu thanhbinhit.</p>
+            <div className="max-w-2xl">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
+                Dự án chọn lọc
+              </p>
+              <h2 className="text-3xl font-bold tracking-tight text-slate-950 dark:text-white md:text-5xl">
+                Những dự án thể hiện rõ năng lực triển khai thực chiến.
+              </h2>
+            </div>
+            <p className="max-w-xl text-base leading-8 text-slate-500 dark:text-slate-400 md:text-lg">
+              Một số sản phẩm tiêu biểu trong các mảng fintech, mobile commerce,
+              booking system và dashboard vận hành.
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[340px] gap-4 md:gap-6">
-            {/* PROJECT 1: ShopVN - Full E-Commerce Platform (Big card, 2x2) */}
-            <BentoCard
-              colSpan={2}
-              rowSpan={2}
-              className="bg-gradient-to-br from-slate-50 to-zinc-100 dark:from-zinc-900/40 dark:to-zinc-950/40 border-slate-200/50 dark:border-white/5"
-              whileHover={hoverScale}
-            >
-              <div className="flex flex-col h-full justify-between p-2">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-full px-3 py-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                      Fintech Automation
-                    </span>
-                    <a href="#cta"
-                      className="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-                      Trao đổi dự án <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 font-display">AutoBank Gateway</h3>
-                  <p className="text-slate-500 dark:text-slate-400 max-w-md text-base leading-relaxed mb-4">
-                    Hệ thống thanh toán tự động kết nối nhiều ngân hàng tại Việt Nam, đối soát giao dịch theo thời gian thực, phát hiện biến động số dư và tự động hóa luồng xử lý cho <strong className="text-slate-700 dark:text-white">khối vận hành tài chính cường độ cao</strong>.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {["Next.js", "Node.js", "TypeScript", "MySQL", "Banking APIs", "Realtime Queue"].map(tag => (
-                      <span key={tag} className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10 text-slate-600 dark:text-slate-300">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+          <motion.article
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white/80 shadow-[0_24px_60px_-32px_rgba(15,23,42,0.22)] backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/70"
+          >
+            <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_420px]">
+              <div className="p-7 md:p-10 lg:p-12">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                    Fintech Automation
+                  </span>
+                  <span className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-500 dark:border-white/10 dark:text-slate-400">
+                    Dự án nổi bật
+                  </span>
                 </div>
-                {/* Real screenshot mockup for ShopVN */}
-                <div className="w-full h-48 md:h-56 relative rounded-2xl overflow-hidden mt-4 border border-black/5 dark:border-white/5 shadow-xl group">
-                  <div className="absolute inset-0 bg-slate-200 dark:bg-zinc-800 animate-pulse" /> {/* Placeholder while loading or missing */}
-                  <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 z-10 flex-col gap-2 opacity-0 group-hover:opacity-10 transition-opacity">
-                    <MonitorSmartphone className="w-8 h-8 opacity-50" />
-                    <span className="text-sm font-medium">Ảnh dự án thật (16:9)</span>
-                  </div>
-                  <Image src="/projects/shopvn.png" alt="AutoBank Gateway Dashboard Mockup" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 z-20" />
-                </div>
-              </div>
-            </BentoCard>
-
-            {/* PROJECT 2: EduPro LMS – Multi-platform (1x2) */}
-            <BentoCard
-              colSpan={1}
-              rowSpan={2}
-              className="bg-gradient-to-b from-brand-blue/5 to-indigo-500/5 border-brand-blue/10 dark:from-brand-blue/[0.05] dark:to-indigo-500/[0.03] overflow-hidden"
-              whileHover={hoverScale}
-            >
-              <div className="flex flex-col h-full p-2">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="p-3 bg-gradient-to-br from-brand-blue to-indigo-500 shadow-lg shadow-blue-500/30 w-fit rounded-2xl">
-                    <MonitorSmartphone className="w-6 h-6 text-white" />
-                  </div>
-                  <a href="#cta"
-                    className="text-[11px] font-bold text-slate-400 hover:text-slate-800 dark:hover:text-white flex items-center gap-1 transition-colors">
-                    Chi tiết <ArrowUpRight className="w-3 h-3" />
-                  </a>
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">OmniSales App</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-1">
-                  Ứng dụng bán hàng đa nền tảng cho đội ngũ kinh doanh di động, đồng bộ tồn kho, đơn hàng, chăm sóc khách hàng và báo cáo tức thời cho <strong className="text-slate-700 dark:text-slate-200">mô hình vận hành đa chi nhánh</strong>.
+                <h3 className="mt-6 max-w-2xl text-3xl font-bold tracking-tight text-slate-950 dark:text-white md:text-5xl">
+                  AutoBank Gateway
+                </h3>
+                <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 md:text-lg">
+                  Hệ thống thanh toán tự động kết nối nhiều ngân hàng tại Việt Nam,
+                  xử lý đối soát giao dịch theo thời gian thực, phát hiện biến động
+                  số dư và tự động hóa luồng vận hành tài chính cho đội ngũ cần độ
+                  chính xác cao.
                 </p>
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {["React Native", "Node.js", "MySQL", "Socket.IO"].map(t => (
-                    <span key={t} className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-700/50">{t}</span>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {["Next.js", "Node.js", "TypeScript", "MySQL", "Banking APIs", "Realtime Queue"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600 dark:border-white/10 dark:bg-zinc-950/70 dark:text-slate-300"
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
-                {/* Real screenshot mockup for EduPro (Mobile/Vertical) */}
-                <div className="flex-1 w-full min-h-[220px] relative rounded-t-2xl overflow-hidden mt-2 border border-black/5 dark:border-white/5 border-b-0 shadow-2xl translate-y-2 group">
-                  <div className="absolute inset-0 bg-slate-200 dark:bg-zinc-800 animate-pulse" /> {/* Placeholder */}
-                  <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 z-10 flex-col gap-2 opacity-0 group-hover:opacity-10 transition-opacity">
-                    <MonitorSmartphone className="w-8 h-8 opacity-50" />
-                    <span className="text-sm font-medium">Ảnh Mobile/App</span>
-                  </div>
-                  <Image src="/projects/edupro-mobile.png" alt="OmniSales mobile app mockup" fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105 z-20" />
-                </div>
-              </div>
-            </BentoCard>
-
-            {/* PROJECT 3: BookEasy – Booking System (1x1 dark) */}
-            <BentoCard
-              colSpan={1}
-              rowSpan={1}
-              noGlass
-              className="bg-slate-900 text-white border-transparent overflow-hidden shadow-2xl"
-              whileHover={hoverScale}
-            >
-              <div className="flex flex-col h-full justify-between p-2 relative">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-brand-teal/20 blur-3xl rounded-full pointer-events-none" />
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="text-2xl font-bold tracking-tight mb-1 font-display">BookEasy</h3>
-                    <p className="opacity-60 font-medium text-sm">Đặt lịch & Quản lý khách hàng</p>
-                  </div>
-                  <a href="#cta"
-                    className="opacity-40 hover:opacity-100 transition-opacity">
-                    <ArrowUpRight className="w-4 h-4" />
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href="#cta"
+                    className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-black"
+                  >
+                    Trao đổi dự án
+                    <ArrowUpRight className="h-4 w-4" />
                   </a>
-                </div>
-                {/* Mini calendar */}
-                <div className="my-2">
-                  <div className="grid grid-cols-7 gap-0.5 w-fit mx-auto">
-                    {["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map(d => (
-                      <div key={d} className="w-7 h-5 flex items-center justify-center text-[8px] font-bold opacity-40">{d}</div>
-                    ))}
-                    {[null, null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((d, i) => (
-                      <div key={i} className={cn(
-                        "w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold transition-transform",
-                        d === 10 ? "bg-brand-teal text-slate-900 scale-105 shadow-lg shadow-brand-teal/40" :
-                          d === 11 || d === 14 ? "bg-white/15 dark:bg-black/20" :
-                            d ? "opacity-40" : ""
-                      )}>{d}</div>
-                    ))}
+                  <div className="rounded-full border border-slate-200 px-5 py-3 text-sm font-medium text-slate-500 dark:border-white/10 dark:text-slate-400">
+                    Đối soát tự động • vận hành thời gian thực
                   </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-teal"></span>
-                  </span>
-                  <span className="text-sm font-semibold uppercase tracking-wider opacity-80">340 quy trình tự động hôm nay</span>
                 </div>
               </div>
-            </BentoCard>
 
-            {/* PROJECT 4: Analytics Dashboard (3 wide) */}
-            <BentoCard
-              colSpan={3}
-              rowSpan={1}
-              className="bg-gradient-to-br from-brand-purple/5 via-transparent to-pink-500/5 border-brand-purple/10 dark:from-brand-purple/[0.05] overflow-hidden"
-              whileHover={hoverScale}
-            >
-              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between h-full gap-6 p-2">
-                <div className="max-w-sm shrink-0">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-full px-3 py-1">
-                      <Zap className="w-3 h-3" /> Real-time
-                    </span>
-                    <a href="#cta"
-                      className="text-[11px] font-bold text-slate-400 hover:text-slate-800 dark:hover:text-white flex items-center gap-1 transition-colors">
-                      Khám phá <ArrowUpRight className="w-3 h-3" />
-                    </a>
+              <div className="relative min-h-[320px] border-t border-slate-200/70 bg-slate-100/70 p-4 dark:border-white/10 dark:bg-zinc-950/60 lg:min-h-full lg:border-l lg:border-t-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-emerald-500/10" />
+                <div className="relative flex h-full min-h-[320px] flex-col justify-between overflow-hidden rounded-[1.5rem] border border-black/5 bg-slate-950 p-5 text-white shadow-2xl dark:border-white/10">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.3),transparent_38%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.18),transparent_35%)]" />
+                  <div className="relative flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">
+                        Banking Flow
+                      </p>
+                      <p className="mt-2 text-2xl font-bold">AutoBank Control</p>
+                    </div>
+                    <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/70">
+                      Live
+                    </div>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 font-display">OpsVision Command Center</h3>
-                  <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Trung tâm điều hành dữ liệu thời gian thực dành cho doanh nghiệp cần nhìn toàn bộ vận hành trong một màn hình, từ doanh thu, đơn hàng, KPI đội ngũ đến cảnh báo tự động cho <strong className="text-slate-700 dark:text-white">chuỗi kinh doanh tăng trưởng nhanh</strong>.
-                  </p>
-                </div>
-                {/* KPI cards with mini bar charts */}
-                <div className="w-full md:flex-1 flex gap-3 overflow-x-auto pb-2 md:pb-0">
-                  {[
-                    { label: "Doanh thu tháng", value: "₫1.28 tỷ", change: "+12%", color: "from-emerald-400 to-teal-500" },
-                    { label: "Đơn hàng", value: "4,281", change: "+8%", color: "from-blue-400 to-indigo-500" },
-                    { label: "Khách mới", value: "9,540", change: "+23%", color: "from-purple-400 to-pink-500" },
-                  ].map(({ label, value, change, color }) => (
-                    <div key={label} className="flex-1 min-w-[130px] bg-white/60 dark:bg-black/30 border border-black/5 dark:border-white/5 rounded-2xl p-3 md:p-4 flex flex-col justify-between shadow-sm">
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">{label}</p>
-                      <p className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">{value}</p>
-                      <div className={`mt-2 inline-flex items-center gap-1 text-xs font-bold text-white bg-gradient-to-r ${color} rounded-full px-2 py-0.5 w-fit`}>
-                        <ArrowRight className="w-3 h-3" />{change}
+
+                  <div className="relative mt-6 grid gap-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { label: "Giao dịch hôm nay", value: "12,480" },
+                        { label: "Đối soát thành công", value: "99.92%" },
+                      ].map((item) => (
+                        <div key={item.label} className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/45">
+                            {item.label}
+                          </p>
+                          <p className="mt-3 text-xl font-bold">{item.value}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+                      <div className="flex items-center justify-between">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/45">
+                          Luồng tiền theo thời gian
+                        </p>
+                        <span className="text-xs font-semibold text-emerald-300">+18%</span>
                       </div>
-                      <div className="flex items-end gap-0.5 mt-3 h-8">
-                        {[40, 65, 50, 80, 60, 90, 75].map((h, i) => (
-                          <div key={i} className={`flex-1 rounded-sm bg-gradient-to-t ${color} opacity-50`} style={{ height: `${h}%` }} />
+                      <div className="mt-5 flex h-24 items-end gap-2">
+                        {[32, 48, 36, 72, 58, 84, 76, 92].map((h, i) => (
+                          <div
+                            key={i}
+                            className="flex-1 rounded-t-full bg-gradient-to-t from-blue-500 to-cyan-300"
+                            style={{ height: `${h}%` }}
+                          />
                         ))}
                       </div>
                     </div>
-                  ))}
+                    <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+                      <div className="mb-3 flex items-center justify-between">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/45">
+                          Trạng thái ngân hàng
+                        </p>
+                        <span className="text-xs font-semibold text-white/55">6 kết nối</span>
+                      </div>
+                      <div className="space-y-2">
+                        {[
+                          { name: "Vietcombank", status: "Đồng bộ", tone: "bg-emerald-400" },
+                          { name: "MB Bank", status: "Đối soát", tone: "bg-blue-400" },
+                          { name: "ACB", status: "Theo dõi", tone: "bg-amber-300" },
+                        ].map((bank) => (
+                          <div key={bank.name} className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2.5">
+                            <span className="text-sm font-semibold text-white/88">{bank.name}</span>
+                            <span className="inline-flex items-center gap-2 text-xs font-semibold text-white/65">
+                              <span className={cn("h-2 w-2 rounded-full", bank.tone)} />
+                              {bank.status}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </BentoCard>
+            </div>
+          </motion.article>
+
+          <div className="mt-6 grid gap-5 lg:grid-cols-3">
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-[1.75rem] border border-slate-200/70 bg-white/80 p-6 shadow-[0_20px_50px_-36px_rgba(15,23,42,0.28)] dark:border-white/10 dark:bg-zinc-900/70"
+            >
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-blue-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
+                  Mobile Commerce
+                </span>
+                <a href="#cta" className="text-slate-400 transition hover:text-slate-800 dark:hover:text-white">
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+              <h3 className="mt-5 text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                OmniSales App
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                Ứng dụng bán hàng đa nền tảng cho đội ngũ kinh doanh di động, đồng
+                bộ đơn hàng, chăm sóc khách hàng và báo cáo tức thời.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {["React Native", "Node.js", "MySQL", "Socket.IO"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-zinc-950 dark:text-slate-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="relative mt-6 h-[320px] overflow-hidden rounded-[1.4rem] border border-black/5 bg-gradient-to-br from-slate-100 to-blue-50 dark:border-white/10 dark:from-zinc-950 dark:to-blue-950/20">
+                <Image
+                  src="/projects/omnisales-illustration.svg"
+                  alt="OmniSales App illustration"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </motion.article>
+
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="flex h-full flex-col rounded-[1.75rem] border border-slate-200/70 bg-slate-950 p-6 text-white shadow-[0_20px_50px_-36px_rgba(15,23,42,0.5)] dark:border-white/10"
+            >
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80">
+                  Booking System
+                </span>
+                <a href="#cta" className="text-white/50 transition hover:text-white">
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+              <h3 className="mt-5 text-2xl font-bold tracking-tight">BookEasy</h3>
+              <p className="mt-4 text-sm leading-7 text-white/70">
+                Hệ thống đặt lịch và quản lý khách hàng giúp đội ngũ vận hành theo
+                dõi lịch hẹn, xử lý quy trình và chăm sóc sau bán gọn hơn.
+              </p>
+              <div className="mt-6 flex flex-1 flex-col rounded-[1.5rem] border border-white/10 bg-white/5 p-4">
+                <div className="mb-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">
+                      Lịch tuần này
+                    </p>
+                    <p className="mt-1 text-lg font-bold">Lịch hẹn & trạng thái chăm sóc</p>
+                  </div>
+                  <span className="rounded-full bg-brand-teal/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-brand-teal">
+                    12 hôm nay
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-7 gap-2 text-center">
+                  {["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map((d) => (
+                    <span key={d} className="text-[10px] font-bold uppercase text-white/35">
+                      {d}
+                    </span>
+                  ))}
+                  {[1, 2, 3, 4, 5, 6, 7].map((d) => (
+                    <span
+                      key={d}
+                      className={cn(
+                        "rounded-full py-2 text-xs font-semibold",
+                        d === 4 ? "bg-brand-teal text-slate-950" : "bg-white/5 text-white/70"
+                      )}
+                    >
+                      {d}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex-1 space-y-3">
+                  {[
+                    ["08:00", "Tư vấn khách mới", "Đã xác nhận"],
+                    ["10:30", "Nhắc lịch bảo trì", "Đang chờ"],
+                    ["14:00", "Demo sản phẩm", "Ưu tiên"],
+                  ].map(([time, title, status]) => (
+                    <div key={time} className="flex items-center justify-between rounded-2xl bg-white/6 px-4 py-3">
+                      <div>
+                        <p className="text-sm font-semibold text-white">{title}</p>
+                        <p className="mt-1 text-xs uppercase tracking-[0.14em] text-white/40">{time}</p>
+                      </div>
+                      <span className="text-xs font-bold uppercase tracking-[0.14em] text-white/55">{status}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+                  <span className="relative flex h-3 w-3">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-teal opacity-75" />
+                    <span className="relative inline-flex h-3 w-3 rounded-full bg-brand-teal" />
+                  </span>
+                  <span className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+                    340 quy trình tự động hôm nay
+                  </span>
+                </div>
+              </div>
+            </motion.article>
+
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.14 }}
+              className="rounded-[1.75rem] border border-slate-200/70 bg-white/80 p-6 shadow-[0_20px_50px_-36px_rgba(15,23,42,0.28)] dark:border-white/10 dark:bg-zinc-900/70"
+            >
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2 rounded-full bg-purple-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-purple-700 dark:bg-purple-950/40 dark:text-purple-300">
+                  <Zap className="h-3.5 w-3.5" />
+                  Ops Dashboard
+                </span>
+                <a href="#cta" className="text-slate-400 transition hover:text-slate-800 dark:hover:text-white">
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+              <h3 className="mt-5 text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                OpsVision Command Center
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                Dashboard điều hành dữ liệu thời gian thực cho doanh nghiệp cần nhìn
+                nhanh doanh thu, KPI và cảnh báo vận hành trong một màn hình.
+              </p>
+              <div className="relative mt-6 h-[320px] overflow-hidden rounded-[1.4rem] border border-black/5 bg-gradient-to-br from-slate-100 to-purple-50 dark:border-white/10 dark:from-zinc-950 dark:to-purple-950/20">
+                <Image
+                  src="/projects/opsvision-illustration.svg"
+                  alt="OpsVision dashboard illustration"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </motion.article>
           </div>
         </section>
 

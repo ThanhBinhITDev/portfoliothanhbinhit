@@ -96,27 +96,25 @@ export default function AboutPage() {
 
         <section className="rounded-[2rem] border border-slate-200/70 bg-slate-50 p-8 md:p-10 dark:border-white/10 dark:bg-zinc-900/60">
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Định vị thương hiệu
+            Định hướng làm việc
           </h2>
           <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">
-            Khi người dùng tìm kiếm &quot;Lê Thanh Bình&quot;, &quot;Thanh Binh
-            IT&quot; hoặc &quot;thanhbinhit&quot;, mục tiêu của website này là
-            giúp Google hiểu đây là cùng một thực thể: một Full-stack Developer
-            cá nhân chuyên cung cấp giải pháp website, ứng dụng web, hệ thống
-            quản trị và dịch vụ kỹ thuật số cho khách hàng tại Việt Nam.
+            Mình tập trung vào các dự án cần sự cân bằng giữa trải nghiệm người
+            dùng, chất lượng kỹ thuật và khả năng vận hành thực tế. Mỗi sản phẩm
+            đều được ưu tiên tính rõ ràng, tốc độ và khả năng mở rộng lâu dài.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/du-an"
+              href="/dich-vu"
               className="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-black"
             >
-              Xem dự án
+              Xem dịch vụ
             </Link>
             <Link
-              href="/dich-vu"
+              href="/du-an"
               className="rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 dark:border-white/10 dark:text-slate-200 dark:hover:bg-white/10"
             >
-              Xem dịch vụ
+              Dự án tiêu biểu
             </Link>
           </div>
         </section>
