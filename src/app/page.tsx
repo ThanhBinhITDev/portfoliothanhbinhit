@@ -225,7 +225,7 @@ export default function Home() {
         {/* Hero Section Redesigned */}
         <section className="relative z-10 pt-24 pb-8 px-4 sm:px-6 min-h-screen flex flex-col items-center justify-between w-full gap-6">
           <div className="max-w-6xl w-full">
-            <div className="glass-panel p-6 sm:p-10 md:p-16 lg:p-24 rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] text-center relative overflow-hidden" data-purpose="hero-container">
+            <div className="glass-panel p-6 sm:p-10 md:p-14 lg:p-16 rounded-[2rem] sm:rounded-[3rem] lg:rounded-[4rem] relative overflow-hidden" data-purpose="hero-container">
               {/* Subtle Glow behind text */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/5 blur-[120px] pointer-events-none"></div>
 
@@ -280,79 +280,133 @@ export default function Home() {
                 <Image src="/svgs/decorate-3.svg" alt="Decoration 3" fill className="object-contain" />
               </motion.div>
 
-              {/* Tech Badge */}
-              <motion.div
-                variants={itemVariants}
-                initial="hidden"
-                animate="visible"
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 mb-10"
-              >
-                <span className="w-2 h-2 rounded-full bg-brand-teal animate-pulse"></span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Kỹ sư Phần mềm & Kiến trúc sư Web</span>
-              </motion.div>
+              <div className="relative z-10 grid items-end gap-10 lg:grid-cols-[minmax(0,1.35fr)_360px] lg:gap-12">
+                <div className="max-w-3xl text-left">
+                  <motion.div
+                    variants={itemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/75 px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm backdrop-blur-md dark:border-zinc-700 dark:bg-zinc-900/75 dark:text-slate-300"
+                  >
+                    <span className="h-2 w-2 rounded-full bg-brand-teal" />
+                    Full-stack Developer tại Việt Nam
+                  </motion.div>
 
-              {/* Logo/Title Branding */}
-              <motion.h2
-                variants={itemVariants}
-                className="font-display text-3xl md:text-4xl mb-6 font-bold tracking-tight text-gradient-hero opacity-90"
-              >
-                Lê Thanh Bình • thanhbinhit
-              </motion.h2>
+                  <motion.p
+                    variants={itemVariants}
+                    className="mt-6 text-sm font-semibold uppercase tracking-[0.26em] text-slate-500 dark:text-slate-400"
+                  >
+                    Lê Thanh Bình • Thanh Binh IT
+                  </motion.p>
 
-              {/* Main Headline */}
-              <motion.h1
-                variants={itemVariants}
-                className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.1] text-gradient-display pb-2 mb-8 md:mb-10"
-              >
-                Full-stack Developer kiến tạo giải pháp số mạnh, nhanh và chuẩn thương hiệu.
-              </motion.h1>
+                  <motion.h1
+                    variants={itemVariants}
+                    className="mt-5 max-w-4xl text-4xl font-extrabold tracking-[-0.04em] text-slate-950 dark:text-white sm:text-5xl md:text-6xl lg:text-[4.25rem] lg:leading-[1.02]"
+                  >
+                    Thiết kế và phát triển sản phẩm số chỉn chu, nhanh và đủ lực để tăng trưởng.
+                  </motion.h1>
 
-              {/* Sub-headline */}
-              <motion.p
-                variants={itemVariants}
-                className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 md:mb-16"
-              >
-                <strong className="text-slate-900 dark:text-white font-semibold">Lê Thanh Bình</strong>, còn được biết đến với tên thương hiệu cá nhân <strong className="text-slate-900 dark:text-white font-semibold">Thanh Binh IT / thanhbinhit</strong>, chuyên thiết kế website, landing page, web app, hệ thống quản trị, app di động, tool theo yêu cầu và các sản phẩm kỹ thuật hiệu năng cao tại Việt Nam.
-              </motion.p>
+                  <motion.p
+                    variants={itemVariants}
+                    className="mt-6 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 md:text-lg"
+                  >
+                    Tôi xây dựng website, landing page, web app, hệ thống quản trị,
+                    mobile app và các giải pháp automation cho doanh nghiệp cần một
+                    sản phẩm vừa đẹp về trải nghiệm, vừa mạnh về kỹ thuật, vừa rõ về
+                    định vị thương hiệu.
+                  </motion.p>
 
-              {/* Interactive CTA Buttons */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4"
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
-                  className="px-10 py-4 w-full sm:w-auto rounded-full bg-slate-900 dark:bg-white dark:text-black font-bold text-white transition-all hover:opacity-90 active:scale-95 shadow-lg shadow-slate-900/20 dark:shadow-white/5"
-                >
-                  Bắt đầu dự án
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(0,0,0,0.05)" }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                  className="px-10 py-4 w-full sm:w-auto rounded-full bg-white/50 dark:bg-white/10 border border-slate-200 dark:border-white/10 font-bold text-slate-700 dark:text-slate-200 transition-all hover:bg-slate-100 dark:hover:bg-white/20 hover:border-slate-300 active:scale-95"
-                >
-                  Xem sản phẩm
-                </motion.button>
-              </motion.div>
+                  <motion.div
+                    variants={itemVariants}
+                    className="mt-8 flex flex-col items-start gap-4 sm:flex-row"
+                  >
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
+                      className="w-full rounded-full bg-slate-950 px-8 py-4 text-sm font-semibold text-white transition-all hover:opacity-90 sm:w-auto dark:bg-white dark:text-black"
+                    >
+                      Bắt đầu dự án
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                      className="w-full rounded-full border border-slate-300 bg-white/70 px-8 py-4 text-sm font-semibold text-slate-700 transition-all hover:bg-slate-100 sm:w-auto dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/20"
+                    >
+                      Xem dự án tiêu biểu
+                    </motion.button>
+                  </motion.div>
 
-              {/* Trusted Tech Stacks */}
-              <motion.div
-                variants={itemVariants}
-                className="mt-12 md:mt-24 pt-8 md:pt-12 border-t border-slate-200/50 dark:border-white/10"
-              >
-                <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500 dark:text-slate-400 mb-4 md:mb-6">Chuyên môn trong các công nghệ hiện đại</p>
-                <div className="flex flex-wrap justify-center gap-6 md:gap-12 opacity-40 hover:opacity-100 transition-all duration-500">
-                  <span className="text-sm font-bold">React.js</span>
-                  <span className="text-sm font-bold">Next.js</span>
-                  <span className="text-sm font-bold">Node.js</span>
-                  <span className="text-sm font-bold">TypeScript</span>
-                  <span className="text-sm font-bold">MySQL</span>
-                  <span className="text-sm font-bold">TailwindCSS</span>
+                  <motion.div
+                    variants={itemVariants}
+                    className="mt-10 grid gap-3 sm:grid-cols-3"
+                  >
+                    {[
+                      { label: "Hướng triển khai", value: "Website • Web App • Automation" },
+                      { label: "Tech stack", value: "Next.js • React • Node.js" },
+                      { label: "Phạm vi", value: "Thiết kế, code, tối ưu và vận hành" },
+                    ].map((item) => (
+                      <div
+                        key={item.label}
+                        className="rounded-[1.5rem] border border-slate-200/80 bg-white/70 p-4 backdrop-blur-md dark:border-white/10 dark:bg-zinc-900/60"
+                      >
+                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                          {item.label}
+                        </p>
+                        <p className="mt-3 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
+                          {item.value}
+                        </p>
+                      </div>
+                    ))}
+                  </motion.div>
                 </div>
-              </motion.div>
+
+                <motion.aside
+                  variants={itemVariants}
+                  className="relative rounded-[2rem] border border-slate-200/80 bg-white/75 p-6 shadow-xl shadow-slate-200/40 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/70 dark:shadow-black/20"
+                >
+                  <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent dark:via-white/20" />
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                    Hồ sơ năng lực
+                  </p>
+                  <div className="mt-5 space-y-5">
+                    <div>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">Vai trò chính</p>
+                      <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        Full-stack Developer
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { value: "Next.js", label: "Frontend" },
+                        { value: "Node.js", label: "Backend" },
+                        { value: "MySQL", label: "Database" },
+                        { value: "SEO", label: "Tối ưu" },
+                      ].map((item) => (
+                        <div
+                          key={item.value}
+                          className="rounded-[1.25rem] bg-slate-50 p-4 dark:bg-zinc-950/70"
+                        >
+                          <p className="text-lg font-bold text-slate-900 dark:text-white">{item.value}</p>
+                          <p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                            {item.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="rounded-[1.5rem] bg-slate-950 p-5 text-white dark:bg-white dark:text-black">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/60 dark:text-black/60">
+                        Định vị
+                      </p>
+                      <p className="mt-3 text-base font-semibold leading-7">
+                        Thanh Binh IT là thương hiệu cá nhân tập trung vào giải pháp
+                        số hiệu quả, bền vững và có chất lượng triển khai thực tế.
+                      </p>
+                    </div>
+                  </div>
+                </motion.aside>
+              </div>
             </div>
           </div>
 
