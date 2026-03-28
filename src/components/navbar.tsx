@@ -3,21 +3,33 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 
-const navLinks = [
+const pageLinks = [
   { href: "/gioi-thieu", label: "Giới thiệu" },
-  { href: "/du-an", label: "Dự án" },
-  { href: "/dich-vu", label: "Dịch vụ" },
-  { href: "#projects", label: "Dự án" },
+  { href: "/du-an", label: "Trang dự án" },
+  { href: "/dich-vu", label: "Trang dịch vụ" },
+];
+
+const homeSectionLinks = [
+  { href: "#projects", label: "Dự án nổi bật" },
   { href: "#workflow-sticky", label: "Quy trình" },
-  { href: "#services", label: "Dịch vụ Home" },
+  { href: "#services", label: "Dịch vụ chính" },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const resolvedHomeLinks = homeSectionLinks.map((link) => ({
+    ...link,
+    href: pathname === "/" ? link.href : `/${link.href}`,
+  }));
+
+  const navLinks = [...pageLinks, ...resolvedHomeLinks];
 
   return (
     <>
