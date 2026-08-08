@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { AppleHelloVietnameseEffect } from "@/components/apple-hello-effect/apple-hello-effect";
+import { AppleHelloVietnameseEffect } from "@/components/features/apple-hello-effect/apple-hello-effect";
 
 interface HelloLoaderProps {
   onDone?: () => void;
@@ -12,15 +12,19 @@ const LOADER_SESSION_KEY = "thanhbinhit_loader_seen";
 const LOADER_DURATION_MS = 1000;
 
 export function HelloLoader({ onDone }: HelloLoaderProps) {
-  const [showContainer, setShowContainer] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem(LOADER_SESSION_KEY) !== "true";
-  });
+  const [showContainer, setShowContainer] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!showContainer || shouldReduceMotion) {
-      if (typeof window !== "undefined" && shouldReduceMotion) {
+    setIsClient(true);
+    const hasSeen = window.sessionStorage.getItem(LOADER_SESSION_KEY) === "true";
+    setShowContainer(!hasSeen && !shouldReduceMotion);
+  }, [shouldReduceMotion]);
+
+  useEffect(() => {
+    if (!showContainer || !isClient || shouldReduceMotion) {
+      if (isClient && shouldReduceMotion) {
         window.sessionStorage.setItem(LOADER_SESSION_KEY, "true");
       }
       onDone?.();
@@ -40,7 +44,9 @@ export function HelloLoader({ onDone }: HelloLoaderProps) {
       window.clearTimeout(timer);
       document.body.style.overflow = "";
     };
-  }, [onDone, shouldReduceMotion, showContainer]);
+  }, [showContainer, isClient, shouldReduceMotion, onDone]);
+
+  if (!isClient) return null;
 
   return (
     <AnimatePresence>

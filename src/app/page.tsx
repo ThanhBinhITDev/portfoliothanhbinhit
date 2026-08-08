@@ -5,7 +5,7 @@ import { useScroll, useTransform, motion, Variants, useMotionValueEvent } from "
 import { LiquidBackground } from "@/components/ui/liquid-background";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, CheckCircle2, Clock, Code2, Layers, Lightbulb, MonitorSmartphone, Settings, Zap } from "lucide-react";
-import { HelloLoader } from "@/components/hello-loader";
+import { HelloLoader } from "@/components/features/hello-loader";
 import { cn } from "@/lib/utils";
 
 type WorkflowStep = {

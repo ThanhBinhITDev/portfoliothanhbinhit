@@ -1,18 +1,19 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Tắt xuất tĩnh để dễ build/test trên máy giám khảo
+  // output: "export",
+  trailingSlash: true,
 
-const nextConfig: NextConfig = {
-  // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
 
-  // Image optimization
   images: {
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 86400,
   },
 
-  // Experimental performance
   experimental: {
     optimizePackageImports: [
       "framer-motion",
@@ -23,4 +24,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

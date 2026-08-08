@@ -1,20 +1,19 @@
 "use client"
 
-import type { TargetAndTransition } from "motion/react"
-import { motion } from "motion/react"
-import type { ComponentProps } from "react"
+import { motion } from "framer-motion";
+import type { ComponentProps } from "react";
 
 import { cn } from "@/lib/utils"
 
-const initialProps: TargetAndTransition = {
+const initialProps = {
   pathLength: 0,
   opacity: 0,
-}
+} as const;
 
-const animateProps: TargetAndTransition = {
+const animateProps = {
   pathLength: 1,
   opacity: 1,
-}
+} as const;
 
 export type AppleHelloEffectProps = Omit<
   ComponentProps<typeof motion.svg>,
